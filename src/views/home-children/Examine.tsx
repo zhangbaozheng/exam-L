@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 
-export default class classify extends Component {
+ class Examine extends Component {
     render() {
         return (
             <div>
-                
+                查看试题
             </div>
         )
     }
 }
+export default Examine;
