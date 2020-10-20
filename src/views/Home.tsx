@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Layout, Menu } from 'antd';
 import routes from '@/router/index'
 import RouterView from '@/router/RouteView'
+import {NavLink} from 'react-router-dom'
 import { NotificationOutlined } from '@ant-design/icons';
 
 const { SubMenu } = Menu;
@@ -46,7 +47,7 @@ export default class Home extends Component<Props, State> {
                                     return <SubMenu key={item.name} icon={<NotificationOutlined />} title={item.name}>
                                             {
                                                 item.children && item.children.map((value) => {
-                                                    return <Menu.Item key={value.name} >{value.name}</Menu.Item>
+                                                    return <Menu.Item key={value.name}><NavLink to={(value.path as string)} >{value.name}</NavLink></Menu.Item>
                                                 })
                                             }
                                         </SubMenu>
@@ -54,23 +55,16 @@ export default class Home extends Component<Props, State> {
                             }
                         </Menu>
                     </Sider>
-                    <Layout style={{ padding: '0 24px 24px' }}>
-                        <h2 style={{ marginTop: '10px', padding: "20px 0px" }}>
-                            标题
-                        </h2>
-                        <Content
+                    <Content
                             className="site-layout-background"
                             style={{
-                                padding: 24,
                                 margin: 0,
                                 minHeight: 280,
                                 background: '#fff',
-                                borderRadius: "10px"
                             }}
                         >
-                            <RouterView routes={this.props.routes}></RouterView>
+                            {/* <RouterView routes={this.props.routes}></RouterView> */}
                         </Content>
-                    </Layout>
                 </Layout>
             </Layout>
         )
