@@ -1,6 +1,10 @@
 {
   "compilerOptions": {
+<<<<<<< HEAD
     "target": "es6",
+=======
+    "target": "es5",
+>>>>>>> 290c56ec3b09146271dbb539823444cc5a937bd6
     "lib": [
       "dom",
       "dom.iterable",
