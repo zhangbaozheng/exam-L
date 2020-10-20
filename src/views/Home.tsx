@@ -6,7 +6,6 @@ import { getCookie } from '@/utils/index'
 import { NavLink } from 'react-router-dom';
 import RouterView from '@/router/RouteView'
 import { NotificationOutlined } from '@ant-design/icons';
-
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
 
@@ -20,7 +19,7 @@ interface IRoute {
 }
 
 interface Props {
-    routes: IRoute[]
+  routes: IRoute[];
 }
 
 interface State {

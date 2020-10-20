@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import ContentBox from '@/components/ContentBox'
-import { Form, Input, Button, Select, DatePicker } from 'antd'
+import { Form, Input, Button, Select, Col, DatePicker } from 'antd';
 
 const layout = {
     labelCol: { span: 8 },
@@ -19,14 +18,8 @@ const onFinishFailed = (errorInfo: any) => {
     console.log('Failed:', errorInfo);
 };
 
-interface Props {
-  
-}
-interface State {
-  
-}
 
-class AddExam extends Component<Props, State> {
+class Add extends Component {
     render() {
         //  const { getFieldProps } = this.props.form;
         return (
@@ -83,7 +76,7 @@ class AddExam extends Component<Props, State> {
                     <Form.Item {...tailLayout}>
                         <Button type="primary" htmlType="submit">
                             创建试卷
-                        </Button>
+                       </Button>
                     </Form.Item>
                 </Form>
             </div>
@@ -91,7 +84,4 @@ class AddExam extends Component<Props, State> {
     }
 }
 
-export default ContentBox({
-    title: '添加考试',
-    Module: AddExam
-})
+export default Add;
