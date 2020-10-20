@@ -1,32 +1,39 @@
 
-import React, { Component } from 'react'
-import {NavLink} from 'react-router-dom';
 import { Layout, Menu } from 'antd';
-import routes from '@/router/index';
+import NavList from '@/router/navList'
+import React, { Component } from 'react'
+import { getCookie } from '@/utils/index'
+import { NavLink } from 'react-router-dom';
 import RouterView from '@/router/RouteView'
 import { NotificationOutlined } from '@ant-design/icons';
+
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
 
 interface IRoute {
-  path?: any;
-  component?: any;
-  redirect?: string;
-  isLogin?: boolean;
-  children?: IRoute[];
-  name: string;
+    path?: any;
+    component?: any;
+    redirect?: string;
+    isLogin?: boolean;
+    children?: IRoute[];
+    name: string;
 }
 
 interface Props {
-  routes: IRoute[];
+    routes: IRoute[]
 }
 
 interface State {
+    routes: IRoute[]
 }
 
 export default class Home extends Component<Props, State> {
-  state = {};
-
+    constructor(props:Props) {
+        super(props)
+        this.state = {
+            routes: []
+        }
+    }
     render() {
         return (
             <Layout style={{ width: '100%', height: '100%' }}>
@@ -43,30 +50,53 @@ export default class Home extends Component<Props, State> {
                             style={{ height: '100%', borderRight: 0, }}
                         >
                             {
-                                (routes[1].children as IRoute[]).map((item) => {
+                                NavList.map((item) => {
                                     return <SubMenu key={item.name} icon={<NotificationOutlined />} title={item.name}>
                                         {
                                             item.children && item.children.map((value) => {
                                                 return <Menu.Item key={value.name}> <NavLink to={value.path}>{value.name}</NavLink></Menu.Item>
                                             })
-                                        } 
+                                        }
                                     </SubMenu>
                                 })
                             }
                         </Menu>
                     </Sider>
                     <Content
-                            className="site-layout-background"
-                            style={{
-                                margin: 0,
-                                minHeight: 280,
-                                background: '#fff',
-                            }}
-                        >
-                            <RouterView routes={this.props.routes}></RouterView>
-                        </Content>
+                        className="site-layout-background"
+                        style={{
+                            margin: 0,
+                            minHeight: 280,
+                            background: '#fff',
+                        }}
+                    >
+                        <RouterView routes={this.props.routes}></RouterView>
+                    </Content>
                 </Layout>
             </Layout>
         )
+    }
+    componentDidMount() {
+        this.disposalData()
+    }
+    disposalData() {
+        let arr = JSON.parse((getCookie('permission') as string));
+        //item.view_id  item.view_authority_text
+        let children:any[] = [];
+        arr.forEach((item:any) => {
+            if(item.view_id !== 'login' && item.view_id !== 'main') {
+                let path = item.view_id.split('-')[1]
+                let component = path[0].toUpperCase() + path.slice(1)
+                children.push({
+                    path: '/index/' + path,
+                    name: item.view_authority_text,
+                    component
+                })
+            }
+        })
+        this.setState({
+            routes: children
+        })
+        console.log(children);
     }
 }

@@ -8,18 +8,17 @@ interface State {
   
 }
 
-
-class Room extends Component<Props, State> {
+class QuestionsDetail extends Component<Props, State> {
     render() {
         return (
             <div>
-                教室管理
+                试题详情
             </div>
         )
     }
 }
 
 export default ContentBox({
-    title: '教室管理',
-    Module: Room
+    title: '试题详情',
+    Module: QuestionsDetail
 })

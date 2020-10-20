@@ -1,6 +1,24 @@
+import request from "@/utils/request"
 import React, { Component } from 'react'
+import ContentBox from '@/components/ContentBox'
 
-export default class QuestionsType extends Component {
+interface Props {
+
+}
+interface State {
+
+}
+
+class QuestionsType extends Component<Props, State> {
+    state = {
+        list: []
+    }
+    componentDidMount() {
+        request.get('/exam/insertQuestionsType').then(res => {
+
+            console.log(res)
+        })
+    }
     render() {
         return (
             <div>
@@ -9,3 +27,8 @@ export default class QuestionsType extends Component {
         )
     }
 }
+
+export default ContentBox({
+    title: '添加试题',
+    Module: QuestionsType
+})

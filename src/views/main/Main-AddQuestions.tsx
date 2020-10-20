@@ -1,6 +1,14 @@
 import React, { Component } from 'react'
+import ContentBox from '@/components/ContentBox'
 
-export default class AddQuestions extends Component {
+interface Props {
+  
+}
+interface State {
+  
+}
+
+class AddQuestions extends Component<Props, State> {
     render() {
         return (
             <div>
@@ -9,3 +17,8 @@ export default class AddQuestions extends Component {
         )
     }
 }
+
+export default ContentBox({
+    title: '添加试题',
+    Module: AddQuestions
+})

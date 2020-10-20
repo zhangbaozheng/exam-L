@@ -1,6 +1,18 @@
 import React, { Component } from 'react'
-
-export default class ShowUser extends Component {
+import ContentBox from '@/components/ContentBox'
+interface Props {
+    
+}
+interface State {
+    
+}
+class ShowUser extends Component<Props, State> {
+    constructor(props: Props) {
+        super(props)
+        this.state = {
+            
+        }
+    }
     render() {
         return (
             <div>
@@ -9,3 +21,8 @@ export default class ShowUser extends Component {
         )
     }
 }
+
+export default ContentBox({
+    title: "用户展示",
+    Module: ShowUser
+})

@@ -1,11 +1,23 @@
 import React, { Component } from 'react'
+import ContentBox from '@/components/ContentBox'
 
-export default class ExamList extends Component {
+interface Props {
+  
+}
+interface State {
+  
+}
+class ExamList extends Component<Props, State> {
     render() {
         return (
-            <div>
+            <div className='s-list'>
                 试卷列表
             </div>
         )
     }
 }
+
+export default ContentBox({
+    title: '试卷列表',
+    Module: ExamList
+})
