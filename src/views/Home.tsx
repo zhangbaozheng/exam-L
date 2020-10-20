@@ -1,32 +1,31 @@
+
 import React, { Component } from 'react'
+import {NavLink} from 'react-router-dom';
 import { Layout, Menu } from 'antd';
-import routes from '@/router/index'
+import routes from '@/router/index';
 import RouterView from '@/router/RouteView'
 import { NotificationOutlined } from '@ant-design/icons';
-import { NavLink } from 'react-router-dom';
-
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
 
 interface IRoute {
-    path?: string
-    component?: any
-    redirect?: string
-    isLogin?: boolean
-    children?: IRoute[]
-    name: string,
-
+  path?: any;
+  component?: any;
+  redirect?: string;
+  isLogin?: boolean;
+  children?: IRoute[];
+  name: string;
 }
 
 interface Props {
-    routes: IRoute[],
+  routes: IRoute[];
 }
-interface State {
 
+interface State {
 }
 
 export default class Home extends Component<Props, State> {
-    state = {}
+  state = {};
 
     render() {
         return (
@@ -45,36 +44,27 @@ export default class Home extends Component<Props, State> {
                         >
                             {
                                 (routes[1].children as IRoute[]).map((item) => {
-                                    return <SubMenu key={item.name} icon={<NotificationOutlined />} title={item.name} >
+                                    return <SubMenu key={item.name} icon={<NotificationOutlined />} title={item.name}>
                                         {
                                             item.children && item.children.map((value) => {
-                                                return <Menu.Item key={value.name}>
-                                                    <NavLink to={value.path as string}>{value.name}</NavLink>
-                                                </Menu.Item>
+                                                return <Menu.Item key={value.name}> <NavLink to={value.path}>{value.name}</NavLink></Menu.Item>
                                             })
-                                        }
+                                        } 
                                     </SubMenu>
                                 })
                             }
                         </Menu>
                     </Sider>
-                    <Layout style={{ padding: '0 24px 24px' }}>
-                        <h2 style={{ marginTop: '10px', padding: "20px 0px" }}>
-                            标题
-                        </h2>
-                        <Content
+                    <Content
                             className="site-layout-background"
                             style={{
-                                padding: 24,
                                 margin: 0,
                                 minHeight: 280,
                                 background: '#fff',
-                                borderRadius: "10px"
                             }}
                         >
                             <RouterView routes={this.props.routes}></RouterView>
                         </Content>
-                    </Layout>
                 </Layout>
             </Layout>
         )

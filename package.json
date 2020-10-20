@@ -75,6 +75,37 @@
         "build": "node scripts/build.js",
         "test": "node scripts/test.js"
     },
+    "moduleFileExtensions": [
+        "web.js",
+        "js",
+        "web.ts",
+        "ts",
+        "web.tsx",
+        "tsx",
+        "json",
+        "web.jsx",
+        "jsx",
+        "node"
+    ],
+    "watchPlugins": [
+        "jest-watch-typeahead/filename",
+        "jest-watch-typeahead/testname"
+    ],
+    "babel": {
+        "presets": [
+            "react-app"
+        ]
+    },
+    "devDependencies": {
+        "@types/react": "^16.9.52",
+        "@types/react-dom": "^16.9.8",
+        "@types/react-router-dom": "^5.1.6",
+        "ant-design": "^1.0.0",
+        "babel-plugin-transform-class-properties": "^6.24.1",
+        "babel-plugin-transform-decorators-legacy": "^1.3.5",
+        "node-sass": "^4.14.1",
+        "react-router-dom": "^5.2.0"
+    },
     "eslintConfig": {
         "extends": "react-app"
     },
@@ -141,20 +172,6 @@
             "jest-watch-typeahead/filename",
             "jest-watch-typeahead/testname"
         ]
-    },
-    "babel": {
-        "presets": [
-            "react-app"
-        ]
-    },
-    "devDependencies": {
-        "@types/react": "^16.9.52",
-        "@types/react-dom": "^16.9.8",
-        "@types/react-router-dom": "^5.1.6",
-        "babel-plugin-transform-class-properties": "^6.24.1",
-        "babel-plugin-transform-decorators-legacy": "^1.3.5",
-        "node-sass": "^4.14.1",
-        "react-router-dom": "^5.2.0"
     },
     "proxy": "http://localhost:7001"
 }

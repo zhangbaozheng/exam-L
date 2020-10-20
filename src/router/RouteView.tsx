@@ -26,7 +26,7 @@ export default function RouterView(props:IProps) {
                             return <Redirect to='/login'/>
                         }
                     }else {
-                        return <item.component {...props} routes={item.children}></item.component>
+                        return <item.component {...props} routes={item.children} key={item.path}></item.component>
                     }
                 }}></Route>
             })
