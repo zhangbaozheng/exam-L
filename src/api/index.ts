@@ -3,13 +3,6 @@
  * @version: 1.0
  * @Author: 赵舒婷
  * @Date: 2020-10-19 20:58:19
-<<<<<<< HEAD
- * @LastEditors: Please set LastEditors
- * @LastEditTime: 2020-10-20 19:38:46
-=======
- * @LastEditors: 赵舒婷
- * @LastEditTime: 2020-10-20 13:21:04
->>>>>>> c08c832fe5946c3c70bb1931e4b5dd3ab192df6c
  */
 import request from '@/utils/request'
 
