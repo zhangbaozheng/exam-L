@@ -15,64 +15,82 @@ import Grade from '@/views/grade/Grade'
 import List from '@/views/grade/List'
 import Room from '@/views/grade/Room'
 import Student from '@/views/grade/Student'
+import Addtest from '@/views/home-children/Addtest';
+import Classify from '@/views/home-children/Classify';
+import Examine from '@/views/home-children/Examine';
 const routes = [
-  {
-    path: "/",
-    redirect: "/index",
-    name: "/",
-  },
-  {
-    path: "/index",
-    name: "index",
-    component: Home,
-    children: [
-      {
-        path:'/index/usercontol',
-        component:UserContol,
-        name: "用户管理",
+    {
+        path: "/",
+        redirect: "/index",
+        name: "/",
+    },
+    {
+        path: "/index",
+        name: "index",
+        component: Home,
         children: [
-          {
-            path:'/index/usercontol/useradd',
-            name: "添加用户",
-            component:UserAdd
-          },
-          {
-            path:'/index/usercontol/usershow',
-            name: "用户展示",
-            component:UserShow
-          },
-        ],
-      },
-      {
-        path: '/index/grade',
-        name:'班级管理',
-        component:Grade,
-        redirect:'/index/grade/list',
-        children:[
             {
-                path: '/index/grade/list',
+                path: '/index/usercontol',
+                component: UserContol,
+                name: "用户管理",
+                children: [
+                    {
+                        path: '/index/usercontol/useradd',
+                        name: "添加用户",
+                        component: UserAdd
+                    },
+                    {
+                        path: '/index/usercontol/usershow',
+                        name: "用户展示",
+                        component: UserShow
+                    },
+                ],
+            },
+            {
+                path: '/index/grade',
                 name: '班级管理',
-                component: List,
+                component: Grade,
+                redirect: '/index/grade/list',
+                children: [
+                    {
+                        path: '/index/grade/list',
+                        name: '班级管理',
+                        component: List,
+                    },
+                    {
+                        path: '/index/grade/room',
+                        name: '教室管理',
+                        component: Room,
+                    },
+                    {
+                        path: '/index/grade/student',
+                        name: '学生管理',
+                        component: Student,
+                    }
+                ]
             },
             {
-                path: '/index/grade/room',
-                name: '教室管理',
-                component: Room,
+                path: '/index/addtest',
+                name: '添加试题',
+                component: Addtest
             },
             {
-                path: '/index/grade/student',
-                name: '学生管理',
-                component: Student,
+                path: '/index/classify',
+                name: '试题分类',
+                component: Classify
+            },
+            {
+                path: '/index/examine',
+                name: '查看试题',
+                component: Examine
             }
-        ]
-    }
-    ],
-  },
-  {
-    path: "/login",
-    name: "login",
-    component: Login,
-  },
+        ],
+    },
+    {
+        path: "/login",
+        name: "login",
+        component: Login,
+    },
 ];
 
 export default routes;

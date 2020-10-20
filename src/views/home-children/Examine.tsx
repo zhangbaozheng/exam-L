@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 
-export default class Room extends Component {
+ class Examine extends Component {
     render() {
         return (
             <div>
-                教室管理
+                查看试题
             </div>
         )
     }
 }
+export default Examine;

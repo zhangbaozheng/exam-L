@@ -1,19 +1,8 @@
-import React, { Component } from 'react'
-<<<<<<< HEAD
 
-export default class Login extends Component {
-    render() {
-        return (
-            <div>
-                this is login
-            </div>
-        )
-    }
-}
-=======
+import React, { Component } from 'react'
 import { _login } from '@/api'
 import {setCookie} from '@/utils/index'
-import { Form, Input, Button, Checkbox,message, Space } from 'antd';
+import { Form, Input, Button, Checkbox,message } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 interface ILogin{
     history:any
@@ -83,4 +72,3 @@ class Login extends Component<ILogin> {
     }
 }
 export default Login
->>>>>>> 290c56ec3b09146271dbb539823444cc5a937bd6
