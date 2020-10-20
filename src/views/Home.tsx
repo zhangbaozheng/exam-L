@@ -22,7 +22,6 @@ interface Props {
 }
 
 interface State {
-    // title:string;
 }
 
 export default class Home extends Component<Props, State> {
@@ -48,7 +47,7 @@ export default class Home extends Component<Props, State> {
                                     return <SubMenu key={item.name} icon={<NotificationOutlined />} title={item.name}>
                                         {
                                             item.children && item.children.map((value) => {
-                                                return <Menu.Item key={value.name} >{value.name}</Menu.Item>
+                                                return <Menu.Item key={value.name}> <NavLink to={value.path}>{value.name}</NavLink></Menu.Item>
                                             })
                                         } 
                                     </SubMenu>

@@ -18,6 +18,9 @@ import Student from '@/views/grade/Student'
 import Addtest from '@/views/home-children/Addtest';
 import Classify from '@/views/home-children/Classify';
 import Examine from '@/views/home-children/Examine';
+import Sexam from "@/views/s-exam/exam";
+import Sadd from "@/views/s-exam/exam/Add";
+import Slist from "@/views/s-exam/exam/List";
 const routes = [
     {
         path: "/",
@@ -70,20 +73,43 @@ const routes = [
                 ]
             },
             {
-                path: '/index/addtest',
-                name: '添加试题',
-                component: Addtest
+                path: '/index',
+                name: '试题管理',
+                children: [
+                    {
+                        path: '/index/addtest',
+                        name: '添加试题',
+                        component: Addtest
+                    },
+                    {
+                        path: '/index/classify',
+                        name: '试题分类',
+                        component: Classify
+                    },
+                    {
+                        path: '/index/examine',
+                        name: '查看试题',
+                        component: Examine
+                    }
+                ]
             },
             {
-                path: '/index/classify',
-                name: '试题分类',
-                component: Classify
+                path: "/index/s-exam",
+                name: "考试管理",
+                component: Sexam,
+                children: [
+                    {
+                        path: "/index/s-exam/s-add",
+                        name: "添加考试",
+                        component: Sadd,
+                    },
+                    {
+                        path: "/index/s-exam/s-list",
+                        name: "试卷列表",
+                        component: Slist,
+                    },
+                ],
             },
-            {
-                path: '/index/examine',
-                name: '查看试题',
-                component: Examine
-            }
         ],
     },
     {
@@ -156,3 +182,4 @@ let nav = [
         ]
     },
 ]
+
