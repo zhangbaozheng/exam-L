@@ -57,7 +57,7 @@ export default class Home extends Component<Props, State> {
                                             item.children && item.children.map((value) => {
                                                 return <Menu.Item key={value.name}> <NavLink to={value.path}>{value.name}</NavLink></Menu.Item>
                                             })
-                                        }
+                                        } 
                                     </SubMenu>
                                 })
                             }

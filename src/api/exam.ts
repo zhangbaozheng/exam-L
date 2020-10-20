@@ -28,3 +28,27 @@ export function _correctExam({exam_student_id,score}:any){ //批改分数
     let url = `/exam/student/${exam_student_id}`
     return request.put(url,{score})
 }
+//试题列表
+
+export function _getTestList() {
+    let url='/exam/exam'
+    return request.get(url)
+};
+export function _getTestType(){
+    let url='/exam/examType'
+    return request.get(url)
+}
+export function _getTestSubject(){
+    let url='/exam/subject'
+    return request.get(url)
+}
+export function _getTestDetail(id:string){
+    let url='/exam/exam'
+    return request.get(url,{params:{id}})
+}
+export function _addTest(values:any){
+    let url='/exam/exam'
+    return request.post(url,values)
+}
+
+
