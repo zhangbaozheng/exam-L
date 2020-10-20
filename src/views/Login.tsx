@@ -1,7 +1,8 @@
+
 import React, { Component } from 'react'
 import { _login } from '@/api'
 import {setCookie} from '@/utils/index'
-import { Form, Input, Button, Checkbox,message, Space } from 'antd';
+import { Form, Input, Button, Checkbox,message } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 interface ILogin{
     history:any

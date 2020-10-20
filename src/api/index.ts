@@ -4,9 +4,9 @@
  * @Author: 赵舒婷
  * @Date: 2020-10-19 20:58:19
  * @LastEditors: 赵舒婷
- * @LastEditTime: 2020-10-19 21:42:28
+ * @LastEditTime: 2020-10-20 13:21:04
  */
-import request from '../utils/request'
+import request from '@/utils/request'
 
 export function _login({user_name,user_pwd}:any){ //用户登录
     let url = '/user/login'
