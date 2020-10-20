@@ -6,6 +6,7 @@ interface IRoute {
     redirect?: string
     isLogin?: boolean
     children?: IRoute[]
+    name: string 
 }
 
 interface IProps {
