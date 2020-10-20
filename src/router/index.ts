@@ -1,18 +1,21 @@
 import Home from '@/views/Home'
 import Login from '@/views/Login'
-// import AddExam from '@/views/main/Main-AddExam'
 
 const routes = [
     {
         path: '/',
-        redirect: '/main',
+        redirect: '/index',
         name: '/'
     },
     {
-        path: '/main',
-        name: 'main',
+        path: '/index',
+        name: 'index',
         component: Home,
-        
+        children: [
+            {
+                name: '123'
+            }
+        ]
     },
     {
         path: '/login',

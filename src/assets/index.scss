@@ -16,3 +16,32 @@ html,body,#root {
     width: 120px;
     height: 30px;
 }
+//登录页样式
+.login{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background-image: url('https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3112503441,1581348683&fm=26&gp=0.jpg');
+}
+#normal_login{
+    width: 27%;
+    height: 40%;
+    background: #f194a496;
+    padding: 20px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left:-15%;
+    margin-top: -15%;
+    border-radius: 10px;
+}
+.login-form-forgot,.ant-checkbox-inner,#ant-checkbox-input,.ant-checkbox-checked{
+    background: salmon;
+    color: #fff;
+    border: 1px solid #fff;
+}
+.login-form-button{
+    width: 100%;
+    background: salmon;
+    border: 1px solid #fff;
+}
