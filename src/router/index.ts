@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * @Description: 
  * @Author: 王寒烟
@@ -18,17 +19,38 @@ import Home from '@/views/Home'
 import Login from '@/views/Login'
 >>>>>>> 290c56ec3b09146271dbb539823444cc5a937bd6
 
+=======
+/*
+ * @Author: your name
+ * @Date: 2020-10-19 18:59:55
+ * @LastEditTime: 2020-10-19 19:59:23
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \exam-L\src\router\index.ts
+ */
+import Home from "@/views/Home";
+import Login from "@/views/Login";
+import UserContol from '../views/userContol'
+import UserAdd from "../views/userControl/userAdd"
+import UserShow from "../views/userControl/userShow"
+>>>>>>> 09824f02e7d8d22157f5fbe09876f9fd6a2e4e8a
 const routes = [
-    {
-        path: '/',
-        redirect: '/index',
-        name: '/'
-    },
-    {
-        path: '/index',
-        name: 'index',
-        component: Home,
+  {
+    path: "/",
+    redirect: "/index",
+    name: "/",
+  },
+  {
+    path: "/index",
+    name: "index",
+    component: Home,
+    children: [
+      {
+        path:'/index/usercontol',
+        component:UserContol,
+        name: "用户管理",
         children: [
+<<<<<<< HEAD
             {
 <<<<<<< HEAD
                 path: '/index/grade',
@@ -64,6 +86,28 @@ const routes = [
         component: Login
     }
 ]
+=======
+          {
+            path:'/index/usercontol/useradd',
+            name: "添加用户",
+            component:UserAdd
+          },
+          {
+            path:'/index/usercontol/usershow',
+            name: "用户展示",
+            component:UserShow
+          },
+        ],
+      },
+    ],
+  },
+  {
+    path: "/login",
+    name: "login",
+    component: Login,
+  },
+];
+>>>>>>> 09824f02e7d8d22157f5fbe09876f9fd6a2e4e8a
 
 export default routes;
 

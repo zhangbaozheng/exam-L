@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { Component } from 'react'
 <<<<<<< HEAD
 import {NavLink} from 'react-router-dom';
@@ -11,29 +12,35 @@ import routes from '@/router/index'
 import RouterView from '@/router/RouteView'
 import {NavLink} from 'react-router-dom'
 import { NotificationOutlined } from '@ant-design/icons';
+=======
+import { Layout, Menu } from "antd";
+import routes from "@/router/index";
+import React, { Component } from "react";
+import { NavLink } from "react-router-dom";
+import RouterView from "@/router/RouteView";
+import { NotificationOutlined } from "@ant-design/icons";
+>>>>>>> 09824f02e7d8d22157f5fbe09876f9fd6a2e4e8a
 
 >>>>>>> 290c56ec3b09146271dbb539823444cc5a937bd6
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
 
 interface IRoute {
-    path?: string
-    component?: any
-    redirect?: string
-    isLogin?: boolean
-    children?: IRoute[]
-    name: string
+  path?: any;
+  component?: any;
+  redirect?: string;
+  isLogin?: boolean;
+  children?: IRoute[];
+  name: string;
 }
 
 interface Props {
-    routes: IRoute[]
+  routes: IRoute[];
 }
-interface State {
-
-}
+interface State {}
 
 export default class Home extends Component<Props, State> {
-    state = {}
+  state = {};
 
     render() {
         return (
