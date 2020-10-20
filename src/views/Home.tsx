@@ -1,31 +1,29 @@
-import React, { Component } from 'react'
-import { Layout, Menu } from 'antd';
-import routes from '@/router/index'
-import RouterView from '@/router/RouteView'
-import {NavLink} from 'react-router-dom'
-import { NotificationOutlined } from '@ant-design/icons';
+import { Layout, Menu } from "antd";
+import routes from "@/router/index";
+import React, { Component } from "react";
+import { NavLink } from "react-router-dom";
+import RouterView from "@/router/RouteView";
+import { NotificationOutlined } from "@ant-design/icons";
 
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
 
 interface IRoute {
-    path?: string
-    component?: any
-    redirect?: string
-    isLogin?: boolean
-    children?: IRoute[]
-    name: string
+  path?: any;
+  component?: any;
+  redirect?: string;
+  isLogin?: boolean;
+  children?: IRoute[];
+  name: string;
 }
 
 interface Props {
-    routes: IRoute[]
+  routes: IRoute[];
 }
-interface State {
-
-}
+interface State {}
 
 export default class Home extends Component<Props, State> {
-    state = {}
+  state = {};
 
     render() {
         return (
