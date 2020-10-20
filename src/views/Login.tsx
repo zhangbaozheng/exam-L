@@ -14,6 +14,7 @@ class Login extends Component<ILogin> {
         const result = await _login(values)
         if(result.data.code === 1){
             setCookie('token',result.data.token)
+            setCookie('userInfo',JSON.stringify(result.data.userInfo))
             message.success('登录成功',1,()=>{
                 this.props.history.push('/index')
             })  
