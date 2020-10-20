@@ -1,25 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-/*
- * @Description: 
- * @Author: 王寒烟
- * @Date: 2020-10-19 19:03:13
- * @LastEditTime: 2020-10-19 19:57:24
- * @LastEditors: 王寒烟
- * @FilePath: \exam-L\src\router\index.ts
- */
-import Home from '@/views/Home'
-import Login from '@/views/Login'
-import Grade from '@/views/grade/Grade'
-import List from '@/views/grade/List'
-import Room from '@/views/grade/Room'
-import Student from '@/views/grade/Student'
-=======
-import Home from '@/views/Home'
-import Login from '@/views/Login'
->>>>>>> 290c56ec3b09146271dbb539823444cc5a937bd6
-
-=======
 /*
  * @Author: your name
  * @Date: 2020-10-19 18:59:55
@@ -30,10 +8,13 @@ import Login from '@/views/Login'
  */
 import Home from "@/views/Home";
 import Login from "@/views/Login";
-import UserContol from '../views/userContol'
-import UserAdd from "../views/userControl/userAdd"
-import UserShow from "../views/userControl/userShow"
->>>>>>> 09824f02e7d8d22157f5fbe09876f9fd6a2e4e8a
+import UserContol from '@/views/userContol'
+import UserAdd from "@/views/userControl/userAdd"
+import UserShow from "@/views/userControl/userShow"
+import Grade from '@/views/grade/Grade'
+import List from '@/views/grade/List'
+import Room from '@/views/grade/Room'
+import Student from '@/views/grade/Student'
 const routes = [
   {
     path: "/",
@@ -50,43 +31,6 @@ const routes = [
         component:UserContol,
         name: "用户管理",
         children: [
-<<<<<<< HEAD
-            {
-<<<<<<< HEAD
-                path: '/index/grade',
-                name:'班级管理',
-                component:Grade,
-                redirect:'/index/grade/list',
-                children:[
-                    {
-                        path: '/index/grade/list',
-                        name: '班级管理',
-                        component: List,
-                    },
-                    {
-                        path: '/index/grade/room',
-                        name: '教室管理',
-                        component: Room,
-                    },
-                    {
-                        path: '/index/grade/student',
-                        name: '学生管理',
-                        component: Student,
-                    }
-                ]
-=======
-                name: '123'
->>>>>>> 290c56ec3b09146271dbb539823444cc5a937bd6
-            }
-        ]
-    },
-    {
-        path: '/login',
-        name: 'login',
-        component: Login
-    }
-]
-=======
           {
             path:'/index/usercontol/useradd',
             name: "添加用户",
@@ -99,6 +43,29 @@ const routes = [
           },
         ],
       },
+      {
+        path: '/index/grade',
+        name:'班级管理',
+        component:Grade,
+        redirect:'/index/grade/list',
+        children:[
+            {
+                path: '/index/grade/list',
+                name: '班级管理',
+                component: List,
+            },
+            {
+                path: '/index/grade/room',
+                name: '教室管理',
+                component: Room,
+            },
+            {
+                path: '/index/grade/student',
+                name: '学生管理',
+                component: Student,
+            }
+        ]
+    }
     ],
   },
   {
@@ -107,12 +74,9 @@ const routes = [
     component: Login,
   },
 ];
->>>>>>> 09824f02e7d8d22157f5fbe09876f9fd6a2e4e8a
 
 export default routes;
 
-<<<<<<< HEAD
-=======
 
 let nav = [
     {
@@ -174,4 +138,3 @@ let nav = [
         ]
     },
 ]
->>>>>>> 290c56ec3b09146271dbb539823444cc5a937bd6
