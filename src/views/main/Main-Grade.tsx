@@ -57,18 +57,18 @@ class Grade extends Component<Props, State> {
             })
         }
     }
-    //删除班级
-    async gradeListDel(record: any) {
-        console.log(record.grade_id)
-        const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzaWduVGltZSI6MTYwMzExMzY5NDM4MiwidXNlcl9pZCI6ImZkamZyLW1zeHA4YSIsInVzZXJfbmFtZSI6ImhlaW5hbiIsImlkZW50aXR5X2lkIjoiNjNubzlwLTh5MGs0IiwiaWRlbnRpdHlfdGV4dCI6IueuoeeQhuWRmCIsImlhdCI6MTYwMzExMzY5NH0.SdSmbDKOQY2WmBzf8txMJ6gkbU9ts5r69DlKZEpNZu0'
-        const res = await _gradeListDel(record.grade_id, token);
-        // console.log(res.data)
-        if (res.data.code) {
-            message.info('删除成功');
-        } else {
-            message.info('删除失败');
-        }
+   //删除班级
+   async gradeListDel(record: any) {
+    // console.log(record)
+    const res = await _gradeListDel(record.grade_id);
+    // console.log(res.data)
+    if (res.data.code) {
+      this.getGradeList()
+      message.info('删除成功');
+    } else {
+      message.info('删除失败');
     }
+  }
 
     showModal = () => {
         this.setState({

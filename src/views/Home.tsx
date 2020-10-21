@@ -1,12 +1,7 @@
 
-<<<<<<< HEAD
 import React, { Component } from 'react'
-// import {NavLink} from 'react-router-dom';
-=======
->>>>>>> bd1f485422caf6f3184879cbe5b18ce136a3cd81
 import { Layout, Menu } from 'antd';
 import NavList from '@/router/navList'
-import React, { Component } from 'react'
 import { getCookie } from '@/utils/index'
 import { NavLink } from 'react-router-dom';
 import RouterView from '@/router/RouteView'

@@ -1,26 +1,3 @@
-<<<<<<< HEAD
-/*
- * @Author: your name
- * @Date: 2020-10-19 18:59:55
- * @LastEditTime: 2020-10-20 13:06:52
- * @LastEditors: 王寒烟
- * @Description: In User Settings Edit
- * @FilePath: \exam-L\src\router\index.ts
- */
-import Home from "@/views/Home";
-import Login from "@/views/Login";
-import UserContol from '@/views/userContol'
-import UserAdd from "@/views/userControl/userAdd"
-import UserShow from "@/views/userControl/userShow"
-import Grade from '@/views/grade/Grade'
-import List from '@/views/grade/List'
-import Room from '@/views/grade/Room'
-import Student from '@/views/grade/Student'
-import Addtest from '@/views/home-children/Addtest';
-import Classify from '@/views/home-children/Classify';
-import Examine from '@/views/home-children/Examine';
-const routes = [
-=======
 
 import Home from "@/views/Home"
 import Login from "@/views/Login"
@@ -69,7 +46,6 @@ export const components = {
 
 
 export const routes = [
->>>>>>> bd1f485422caf6f3184879cbe5b18ce136a3cd81
     {
         path: "/",
         redirect: "/index",
@@ -94,26 +70,6 @@ export const routes = [
                 path: '/index/Grade',
                 name: '班级管理',
                 component: Grade,
-<<<<<<< HEAD
-                children: [
-                    {
-                        path: '/index/grade/list',
-                        name: '班级管理',
-                        component: List,
-                    },
-                    {
-                        path: '/index/grade/room',
-                        name: '教室管理',
-                        component: Room,
-                    },
-                    {
-                        path: '/index/grade/student',
-                        name: '学生管理',
-                        component: Student,
-                    }
-                ]
-=======
->>>>>>> bd1f485422caf6f3184879cbe5b18ce136a3cd81
             },
             {
                 path: '/index/room',

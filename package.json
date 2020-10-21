@@ -88,29 +88,6 @@
         "node"
     ],
     "watchPlugins": [
-<<<<<<< HEAD
-      "jest-watch-typeahead/filename",
-      "jest-watch-typeahead/testname"
-    ]
-  },
-  "babel": {
-    "presets": [
-      "react-app"
-    ]
-  },
-  "devDependencies": {
-    "@types/react": "^16.9.52",
-    "@types/react-dom": "^16.9.8",
-    "@types/react-router-dom": "^5.1.6",
-    "ant-design": "^1.0.0",
-    "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-plugin-transform-decorators-legacy": "^1.3.5",
-    "node-sass": "^4.14.1",
-    "react-router-dom": "^5.2.0"
-  },
-  "proxy": "http://127.0.0.1:7001"
-}
-=======
         "jest-watch-typeahead/filename",
         "jest-watch-typeahead/testname"
     ],
@@ -198,4 +175,3 @@
     },
     "proxy": "http://localhost:7001"
 }
->>>>>>> bd1f485422caf6f3184879cbe5b18ce136a3cd81
