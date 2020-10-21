@@ -48,7 +48,7 @@ class ExaminationPapers extends Component<IProps> {
         if (result.data.code === 1) { //批改成功
             message.info('批改成功', 1, () => {
                 this.props.history.push({
-                    pathname: '/index/paper/classmate',
+                    pathname: '/index/ExamPaperClassmate',
                     query: {
                         grade_id: this.props.history.location.state.grade_id,
                         grade_name: this.props.history.location.state.grade_name

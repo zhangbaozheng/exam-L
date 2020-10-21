@@ -92,7 +92,7 @@ export const routes = [
                 component: QuestionsDetail
             },
             {
-                path: '/index/ExaminationPapers',
+                path: '/index/ExaminationPapers/:id',
                 name: "阅卷",
                 component: ExaminationPapers
             },

@@ -1,3 +1,11 @@
+/*
+ * @Descripttion: 
+ * @version: 1.0
+ * @Author: 赵舒婷
+ * @Date: 2020-10-21 08:51:37
+ * @LastEditors: 赵舒婷
+ * @LastEditTime: 2020-10-21 09:15:17
+ */
 
 interface IRoute {
     path?: any;
@@ -69,7 +77,7 @@ const NavList: IRoute[] = [
     {
         name: '阅卷管理',
         children: [
-            {   path: '/index',
+            {   path: '/index/ExamPaperClassList',
                 name: '待批班级'
             }
         ]

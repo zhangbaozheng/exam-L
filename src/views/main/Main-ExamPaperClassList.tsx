@@ -47,7 +47,7 @@ class ExamPaperClassList extends Component<Props, State> {
                     <Space size="middle">
                         <a onClick={() => {
                             this.props.history.push({
-                                pathname: '/index/paper/classmate',
+                                pathname: '/index/ExamPaperClassmate',
                                 query: {
                                     grade_id: record.grade_id,
                                     grade_name: record.grade_name
@@ -63,7 +63,6 @@ class ExamPaperClassList extends Component<Props, State> {
     render() {
         return (
             <div>
-                <h2 style={{ padding: '15px' }}>待批班级</h2>
                 <Table columns={this.state.columns} dataSource={this.state.data} />
             </div>
         );
