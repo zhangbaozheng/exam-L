@@ -110,7 +110,7 @@ class WatchQuestions extends Component<IProps & RouteComponentProps, IState> {
                                         </p>
                                     </div>
                                     <div className="right">
-                                        <a href="">编辑</a>
+                                        <span>编辑</span>
                                     </div>
                                 </li>
                             })

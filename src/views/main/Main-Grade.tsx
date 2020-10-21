@@ -27,7 +27,7 @@ class Grade extends Component<Props, State> {
             title: '班級',
             dataIndex: 'grade_name',
             key: 'grade_name',
-            render: (text: React.ReactNode) => <a>{text}</a>,
+            render: (text: React.ReactNode) => <span>{text}</span>,
           },
           {
             title: '課程名',
@@ -44,8 +44,8 @@ class Grade extends Component<Props, State> {
             key: 'action',
             render: (text: any, record: { name: React.ReactNode; }) => (
               <Space size="middle">
-                <a onClick={() => { this.showModal(2, record) }}>修改</a>
-                <a onClick={() => { this.gradeListDel(record) }}>删除</a>
+                <span onClick={() => { this.showModal(2, record) }}>修改</span>
+                <span onClick={() => { this.gradeListDel(record) }}>删除</span>
               </Space>
             ),
           },

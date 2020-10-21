@@ -1,6 +1,6 @@
 import React from 'react'
 import { Switch,Route,Redirect } from 'react-router-dom'
-import { getCookie } from '@/utils/index'
+import { _userInfo } from '@/api/index'
 interface IRoute {
     path?: string
     component?: any
@@ -14,6 +14,17 @@ interface IProps {
     routes: IRoute[]
 }
 
+async function userInfo() {
+    let result = await _userInfo();
+    console.log(result);
+    if(result.data.code === 1) {
+        return true
+    }else {
+        return false
+    }
+}
+
+
 export default function RouterView(props:IProps) {
     let coms = props.routes.filter(item=>item.component)
     let reds = props.routes.filter(item=>item.redirect)
@@ -22,10 +33,10 @@ export default function RouterView(props:IProps) {
         {
             coms.map((item)=>{
                 return <Route path={item.path} key={item.path} render={(props)=>{
-                        if(!getCookie('token')) {
-                            return <Redirect to='/login'/>
+                        if(userInfo()) {
+                            return <item.component {...props} routes={item.children} key={item.path}></item.component>
                         } else {
-                        return <item.component {...props} routes={item.children} key={item.path}></item.component>
+                            return <Redirect to='/login'/>
                     }
                 }}></Route>
             })
