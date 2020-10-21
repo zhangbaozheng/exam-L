@@ -5,8 +5,8 @@
  * @Date: 2020-10-19 20:58:19
  */
 import request from '@/utils/request'
-
-export function _login({user_name,user_pwd}:any){ //用户登录
+//用户登录
+export function _login({user_name,user_pwd}:any){ 
     let url = '/user/login'
     return request.post(url,{user_name,user_pwd})
 }
