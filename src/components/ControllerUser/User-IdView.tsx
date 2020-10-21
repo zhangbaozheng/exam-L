@@ -32,7 +32,6 @@ class ApiSetUser extends Component<Props, State> {
   };
   //提交事件
   onFinish = (values: object) => {
-    console.log(values);
     this.userSetApiView(values);
   };
   //重置事件
@@ -100,7 +99,6 @@ class ApiSetUser extends Component<Props, State> {
   //获取身份数据
   async userIdentity() {
     let result = await _userIdentity();
-    console.log(result.data.data);
     this.setState({
       viewData: result.data.data,
     });
@@ -108,7 +106,6 @@ class ApiSetUser extends Component<Props, State> {
   //获取所有考试数据
   async userAuthority() {
     let result = await _userAuthority();
-    console.log(result.data.data);
     this.setState({
       AuthData: result.data.data,
     });
@@ -116,7 +113,6 @@ class ApiSetUser extends Component<Props, State> {
   //设置数据视图
   async userSetApiView(value: object) {
     let result = await _userSetApiView(value);
-    console.log(result.data.code);
     switch (result.data.code) {
       case 0: {
         message.error(result.data.msg);

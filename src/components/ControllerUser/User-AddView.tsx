@@ -31,7 +31,6 @@ class UpdateUser extends Component<Props, State> {
   };
   //提交事件
   onFinish = (values: any) => {
-    console.log(values);
     this.userAddView(values);
   };
   //重置事件
@@ -81,7 +80,6 @@ class UpdateUser extends Component<Props, State> {
   //   message.success(result.data.msg);
   async userView() {
     let result = await _userView();
-    console.log(result.data.data);
     this.setState({
       viewData: result.data.data,
     });
@@ -95,7 +93,6 @@ class UpdateUser extends Component<Props, State> {
       view_id: values.view_id,
     };
     let result = await _userAddView(obj);
-    console.log(result.data.code);
     switch (result.data.code) {
       case 0: {
         message.error(result.data.msg);

@@ -79,7 +79,6 @@ class UpdateUser extends Component<Props, State> {
               allowClear
             >
               {this.state.idData.map((item: any, index: number) => {
-                console.log(item);
                 return (
                   <Option value={item.identity_id} key={index}>
                     {item.identity_text}
