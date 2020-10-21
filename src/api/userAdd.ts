@@ -9,7 +9,6 @@
 import request from "@/utils/request";
 //添加用户
 export function _userAdd(userObj: object) {
-  console.log(userObj);
   let url = "/user";
   return request.post(url, userObj);
 }
@@ -29,7 +28,7 @@ export function _updateUsers(userObj: object) {
   return request.put(url, userObj);
 }
 //添加身份
-export function _userEdit(values: any) {
+export function _userEdit(values: string) {
   let url = "/user/identity/edit";
   return request.get(url, {
     params: {
@@ -39,7 +38,6 @@ export function _userEdit(values: any) {
 }
 //添加api接口权限
 export function _userApiEdit(values: any) {
-  console.log(values);
   let url = "/user/authorityApi/edit";
   return request.get(url, {
     params: {

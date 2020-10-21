@@ -3,7 +3,6 @@ import { FormInstance } from "antd/lib/form";
 import { _userAdd, _identity } from "@/api/userAdd";
 import { Form, Input, Button, Select, message } from "antd";
 
-
 const { Option } = Select;
 interface Props {}
 interface State {}
@@ -25,14 +24,10 @@ class UserAdd extends Component<Props, State> {
     idData: [],
     updateData: [],
   };
-  onGenderChange = (value: string) => {
-    this.formRef.current.setFieldsValue({
-      note: `Hi, ${value === "male" ? "man" : "lady"}!`,
-    });
-  };
   //提交事件
-  onFinish = (values: any) => {
+  onFinish = (values: object) => {
     this.userAdd(values);
+    (this.props as any).reload();
   };
   //重置事件
   onReset = () => {
@@ -58,11 +53,7 @@ class UserAdd extends Component<Props, State> {
           </Form.Item>
           {/**填写身份id*/}
           <Form.Item name="identity_id">
-            <Select
-              placeholder="请选择身份id"
-              onChange={this.onGenderChange}
-              allowClear
-            >
+            <Select placeholder="请选择身份id" allowClear>
               {this.state.idData.map((item: any, index: number) => {
                 return (
                   <Option value={item.identity_id} key={index}>

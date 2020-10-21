@@ -23,11 +23,6 @@ class IdUserAdd extends Component<Props, State> {
     idData: [],
     updateData: [],
   };
-  onGenderChange = (value: string) => {
-    this.formRef.current.setFieldsValue({
-      note: `Hi, ${value === "male" ? "man" : "lady"}!`,
-    });
-  };
   //提交事件
   onFinish = (values: any) => {
     this.userEdit(values.identity_text);

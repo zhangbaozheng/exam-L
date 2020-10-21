@@ -24,13 +24,8 @@ class UpdateUser extends Component<Props, State> {
     idData: [],
     updateData: [],
   };
-  onGenderChange = (value: string) => {
-    this.formRef.current.setFieldsValue({
-      note: `Hi, ${value === "male" ? "man" : "lady"}!`,
-    });
-  };
   //提交事件
-  onFinish = (values: any) => {
+  onFinish = (values: object) => {
     this.updateUsers(values);
   };
   //重置事件
@@ -49,11 +44,7 @@ class UpdateUser extends Component<Props, State> {
         >
           {/**用户选择 */}
           <Form.Item name="user_id" rules={[{ required: true }]}>
-            <Select
-              placeholder="请选择身份id"
-              onChange={this.onGenderChange}
-              allowClear
-            >
+            <Select placeholder="请选择身份id" allowClear>
               {this.state.updateData.map((item: any, index: number) => {
                 return (
                   <Option value={item.user_id} key={index}>
@@ -73,11 +64,7 @@ class UpdateUser extends Component<Props, State> {
           </Form.Item>
           {/**用户身份选择 */}
           <Form.Item name="identity_id">
-            <Select
-              placeholder="请选择身份id"
-              onChange={this.onGenderChange}
-              allowClear
-            >
+            <Select placeholder="请选择身份id" allowClear>
               {this.state.idData.map((item: any, index: number) => {
                 return (
                   <Option value={item.identity_id} key={index}>

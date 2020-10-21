@@ -25,11 +25,6 @@ class ApiSetUser extends Component<Props, State> {
     AuthData: [],
     userInfo: "",
   };
-  onGenderChange = (value: string) => {
-    this.formRef.current.setFieldsValue({
-      note: `Hi, ${value === "male" ? "man" : "lady"}!`,
-    });
-  };
   //提交事件
   onFinish = (values: object) => {
     this.userSetApiView(values);
@@ -49,11 +44,7 @@ class ApiSetUser extends Component<Props, State> {
           onFinish={this.onFinish}
         >
           <Form.Item name="identity_id">
-            <Select
-              placeholder="请选择身份id"
-              onChange={this.onGenderChange}
-              allowClear
-            >
+            <Select placeholder="请选择身份id" allowClear>
               {this.state.viewData.map((item: any, index: number) => {
                 return (
                   <Option value={item.identity_id} key={index}>
@@ -65,11 +56,7 @@ class ApiSetUser extends Component<Props, State> {
           </Form.Item>
           {/**选择api接口权限*/}
           <Form.Item name="api_authority_id">
-            <Select
-              placeholder="请选择api接口权限"
-              onChange={this.onGenderChange}
-              allowClear
-            >
+            <Select placeholder="请选择api接口权限" allowClear>
               {this.state.AuthData.map((item: any, index: number) => {
                 return (
                   <Option value={item.api_authority_id} key={index}>

@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import { FormInstance } from "antd/lib/form";
-import { Form,Button, Select, message } from "antd";
+import { Form, Button, Select, message } from "antd";
 import { _userAddView, _userView } from "@/api/userAdd";
-
 
 const { Option } = Select;
 interface Props {}
@@ -25,14 +24,11 @@ class UpdateUser extends Component<Props, State> {
     viewData: [],
     userInfo: "",
   };
-  onGenderChange = (value: string) => {
-    this.formRef.current.setFieldsValue({
-      note: `Hi, ${value === "male" ? "man" : "lady"}!`,
-    });
-  };
+
   //提交事件
-  onFinish = (values: any) => {
+  onFinish = (values: object) => {
     this.userAddView(values);
+    (this.props as any).reload();
   };
   //重置事件
   onReset = () => {
@@ -49,11 +45,7 @@ class UpdateUser extends Component<Props, State> {
           onFinish={this.onFinish}
         >
           <Form.Item name="view_id">
-            <Select
-              placeholder="添加视图接口权限"
-              onChange={this.onGenderChange}
-              allowClear
-            >
+            <Select placeholder="添加视图接口权限" allowClear>
               {this.state.viewData.map((item: any, index: number) => {
                 return (
                   <Option value={item.view_id} key={index}>
