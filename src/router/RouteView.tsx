@@ -1,5 +1,6 @@
 import React from 'react'
-import {Switch,Route,Redirect} from 'react-router-dom'
+import { Switch,Route,Redirect } from 'react-router-dom'
+import { getCookie } from '@/utils/index'
 interface IRoute {
     path?: string
     component?: any
@@ -21,11 +22,9 @@ export default function RouterView(props:IProps) {
         {
             coms.map((item)=>{
                 return <Route path={item.path} key={item.path} render={(props)=>{
-                    if(item.isLogin) {
-                        if(!sessionStorage.getItem('token')) {
+                        if(!getCookie('token')) {
                             return <Redirect to='/login'/>
-                        }
-                    }else {
+                        } else {
                         return <item.component {...props} routes={item.children} key={item.path}></item.component>
                     }
                 }}></Route>

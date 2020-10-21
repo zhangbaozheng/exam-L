@@ -2,23 +2,23 @@ import React, { Component } from 'react'
 import ContentBox from '@/components/ContentBox'
 
 interface Props {
-
+  
 }
 interface State {
-
+  
 }
 
-class AddQuestions extends Component<Props, State> {
+class QuestionsDetail extends Component<Props, State> {
     render() {
         return (
             <div>
-                添加试题
+                试题详情
             </div>
         )
     }
 }
 
 export default ContentBox({
-    title: '添加试题',
-    Module: AddQuestions
+    title: '试题详情',
+    Module: QuestionsDetail
 })

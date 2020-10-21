@@ -1,26 +1,39 @@
 
+
 import React, { Component } from 'react'
-import { _login } from '@/api'
-import {setCookie} from '@/utils/index'
 import { Form, Input, Button, Checkbox,message } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
+import { _login, _GetUserNew} from '@/api'
+import {setCookie} from '@/utils/index'
 interface ILogin{
     history:any
 }
 class Login extends Component<ILogin> {
-
+    //登录事件
     async onFinish(values: any){
-
         const result = await _login(values)
         if(result.data.code === 1){
+            // 保存token
             setCookie('token',result.data.token)
-            message.success('登录成功',1,()=>{
-                this.props.history.push('/index')
-            })  
+            this.getPermission(result.data.userInfo)
         }else{
             message.error('用户名或密码错误')
         }
     };
+    // 获取权限
+    async getPermission(userInfo:any) {
+        setCookie('userInfo',JSON.stringify(userInfo))
+        const result = await _GetUserNew(userInfo.user_id)
+        if(result.data.code === 1){
+            console.log(result);
+            // 保存权限数组
+            setCookie('permission',JSON.stringify(result.data.data))
+            // 登录成功跳转到首页
+            message.success('登录成功',1,()=>{
+                this.props.history.push('/index')
+            })
+        }
+    }
 
     render() {
         return (
@@ -53,7 +66,7 @@ class Login extends Component<ILogin> {
                             <Checkbox>记住密码</Checkbox>
                         </Form.Item>
 
-                        <a className="login-form-forgot" href="">
+                        <a className="login-form-forgot" href="https://www.baidu.com/">
                             忘记密码
                         </a>
                     </Form.Item>
