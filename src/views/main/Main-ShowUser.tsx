@@ -1,6 +1,8 @@
+import { Tabs, Table } from "antd";
+import userAll from '@/config/User-Show'
 import React, { Component } from 'react'
 import ContentBox from '@/components/ContentBox'
-import { Tabs, Table } from "antd";
+
 import {
     _user,
     _identity,
@@ -14,32 +16,6 @@ interface Props { }
 interface State { }
 class ShowUser extends Component<Props, State> {
     state = {
-        userAll: [
-            {
-                id: 1,
-                name: "用户数据",
-            },
-            {
-                id: 2,
-                name: "身份数据",
-            },
-            {
-                id: 3,
-                name: "api接口权限",
-            },
-            {
-                id: 4,
-                name: "身份和api接口关系",
-            },
-            {
-                id: 5,
-                name: "视图接口权限",
-            },
-            {
-                id: 6,
-                name: "身份和视图权限关系",
-            },
-        ],
         data: [],
         columns: [],
         idData: [],
@@ -54,7 +30,7 @@ class ShowUser extends Component<Props, State> {
             <div style={{ padding: "20px" }}>
                 <div className="ShowNav">
                     <Tabs defaultActiveKey="1" onChange={this.callback}>
-                        {this.state.userAll.map((item) => {
+                        {userAll.map((item) => {
                             return (
                                 <TabPane tab={item.name} key={item.id}>
                                     <div className="ant-wrapper">

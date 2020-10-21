@@ -4,7 +4,7 @@ import UserApiAdd from "@/components/ControllerUser/User-ApiAdd";
 import UserAddView from "@/components/ControllerUser/User-AddView";
 import UserApiSet from "@/components/ControllerUser/User-ApiSet";
 import UserIdView from "@/components/ControllerUser/User-IdView";
-const AddUserConfig: any[] = [
+const AddUserConfig = [
     {
         tab: "身份",
         type: "card",
