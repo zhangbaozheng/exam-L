@@ -85,9 +85,8 @@ class UpdateUser extends Component<Props, State> {
   }
   async userAddView(values: any) {
     try {
-      console.log(values === undefined);
       if (values.view_authority_text === undefined) {
-        message.error("内容不能为空");
+        return message.error("内容不能为空");
       }
       let info = this.state.viewData.filter(
         (item: any) => item.view_id === values.view_id
