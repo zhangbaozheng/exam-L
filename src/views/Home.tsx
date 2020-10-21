@@ -1,11 +1,11 @@
 
-import React, { Component } from 'react'
 import { Layout, Menu } from 'antd';
 import NavList from '@/router/navList'
 import { getCookie } from '@/utils/index'
 import { NavLink } from 'react-router-dom';
 import RouterView from '@/router/RouteView'
 import { NotificationOutlined } from '@ant-design/icons';
+import React, { Component } from 'react';
 
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
@@ -20,7 +20,7 @@ interface IRoute {
 }
 
 interface Props {
-    routes: IRoute[]
+  routes: IRoute[];
 }
 
 interface State {
@@ -28,6 +28,8 @@ interface State {
 }
 
 export default class Home extends Component<Props, State> {
+    state: { routes: never[]; };
+    props: any;
     constructor(props:Props) {
         super(props)
         this.state = {
@@ -56,7 +58,7 @@ export default class Home extends Component<Props, State> {
                                             item.children && item.children.map((value) => {
                                                 return <Menu.Item key={value.name}> <NavLink to={value.path}>{value.name}</NavLink></Menu.Item>
                                             })
-                                        }
+                                        } 
                                     </SubMenu>
                                 })
                             }

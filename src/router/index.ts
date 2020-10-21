@@ -57,6 +57,47 @@ export const routes = [
         component: Home,
         children: [
             {
+                path: '/index/menu',
+                name: "添加菜单",
+                component: Menu
+            },
+            {
+                path: '/index/ExamPaperClassList',
+                name: "批卷班级",
+                component: ExamPaperClassList
+            },
+            {
+                path: '/index/ExamPaperClassmate',
+                name: "待批试卷",
+                component: ExamPaperClassmate
+            },
+            {
+                path: '/index/ExamEdit',
+                name: "创建试卷",
+                component: ExamEdit
+            },
+            {
+                path: '/index/ExamDetail',
+                name: "试卷详情",
+                component: ExamDetail
+            },
+            {
+                path: '/index/EditQuestions',
+                name: "编辑试题",
+                component: EditQuestions
+            },
+            {
+                path: '/index/QuestionsDetail',
+                name: "试题详情",
+                component: QuestionsDetail
+            },
+            {
+                path: '/index/ExaminationPapers',
+                name: "阅卷",
+                component: ExaminationPapers
+            },
+
+            {
                 path: '/index/useradd',
                 name: "添加用户",
                 component: AddUser

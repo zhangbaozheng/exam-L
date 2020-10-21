@@ -2,16 +2,12 @@
  * @Description: 
  * @Author: 王寒烟
  * @Date: 2020-10-19 19:20:22
- * @LastEditTime: 2020-10-20 21:02:49
+ * @LastEditTime: 2020-10-21 22:26:54
  * @LastEditors: 王寒烟
  * @FilePath: \exam-L\src\api\grade.ts
  */
-//@ts-nocheck
 import request from '@/utils/request'
 
-
-
-//班级管理
 //班级信息
 export function _getGradeList() {
   return request.get('/manger/grade')
@@ -20,7 +16,7 @@ export function _getGradeList() {
 //删除班级
 export function _gradeListDel(id:string) {
   return request.delete('/manger/grade/delete',{
-    data: {
+    params: {
       grade_id: id
     }
   })
@@ -63,9 +59,20 @@ export function _gradeRoomDel(id:string) {
 }
 
 //添加教室
-export function _gradeRoomAdd(value) {
+export function _gradeRoomAdd(value:any) {
   return request.post('/manger/room',value)
 }
+
+
+
+
+
+//获取课程信息
+export function _getSubjectList() {
+  return request.get('/exam/subject')
+}
+
+
 
 
 
