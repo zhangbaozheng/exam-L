@@ -1,7 +1,8 @@
 import React, { Component } from "react";
+import { _userEdit } from "@/api/userAdd";
 import { FormInstance } from "antd/lib/form";
 import { Form, Input, Button, message } from "antd";
-import { _userEdit } from "@/api/userAdd";
+
 interface Props {}
 interface State {}
 

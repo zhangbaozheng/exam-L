@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { FormInstance } from "antd/lib/form";
-import { _userIdentity, _userAuthority, _userSetApiView } from "@/api/userAdd";
 import { Form, Button, Select, message } from "antd";
+import { _userIdentity, _userAuthority, _userSetApiView } from "@/api/userAdd";
 
 const { Option } = Select;
 interface Props {}
@@ -111,7 +111,13 @@ class ApiSetUser extends Component<Props, State> {
     });
   }
   //设置数据视图
-  async userSetApiView(value: object) {
+  async userSetApiView(value: any) {
+    if (
+      value.identity_id === undefined &&
+      value.view_authority_id === undefined
+    ) {
+      return message.error("内容不能为空");
+    }
     let result = await _userSetApiView(value);
     switch (result.data.code) {
       case 0: {

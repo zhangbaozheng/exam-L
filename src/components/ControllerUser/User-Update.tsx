@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { FormInstance } from "antd/lib/form";
 import { Form, Input, Button, Select, message } from "antd";
-import { _userAdd, _identity, _updateUser, _updateUsers } from "@/api/userAdd";
+import { _identity, _updateUser, _updateUsers } from "@/api/userAdd";
 
 const { Option } = Select;
 interface Props {}
@@ -64,15 +64,15 @@ class UpdateUser extends Component<Props, State> {
             </Select>
           </Form.Item>
           {/**填写用户名*/}
-          <Form.Item name="user_name" rules={[{ required: true }]}>
+          <Form.Item name="user_name">
             <Input placeholder="请输入用户名" />
           </Form.Item>
           {/**填写密码*/}
-          <Form.Item name="user_pwd" rules={[{ required: true }]}>
+          <Form.Item name="user_pwd">
             <Input placeholder="请输入密码" />
           </Form.Item>
           {/**用户身份选择 */}
-          <Form.Item name="identity_id" rules={[{ required: true }]}>
+          <Form.Item name="identity_id">
             <Select
               placeholder="请选择身份id"
               onChange={this.onGenderChange}

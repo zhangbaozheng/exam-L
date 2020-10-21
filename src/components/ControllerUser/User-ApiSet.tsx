@@ -32,6 +32,7 @@ class ApiSetUser extends Component<Props, State> {
   };
   //提交事件
   onFinish = (values: object) => {
+    console.log(values);
     this.userSetApi(values);
   };
   //重置事件
@@ -110,7 +111,13 @@ class ApiSetUser extends Component<Props, State> {
     });
   }
   //设置数据
-  async userSetApi(value: object) {
+  async userSetApi(value: any) {
+    if (
+      value.api_authority_id === undefined &&
+      value.identity_id === undefined
+    ) {
+      return message.error("内容不能为空");
+    }
     let result = await _userSetApi(value);
     switch (result.data.code) {
       case 0: {

@@ -54,7 +54,7 @@ class ShowUser extends Component<Props, State> {
             <div style={{ padding: "20px" }}>
                 <div className="ShowNav">
                     <Tabs defaultActiveKey="1" onChange={this.callback}>
-                        {this.state.userAll.map((item, index) => {
+                        {this.state.userAll.map((item) => {
                             return (
                                 <TabPane tab={item.name} key={item.id}>
                                     <div className="ant-wrapper">

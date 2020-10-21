@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { FormInstance } from "antd/lib/form";
+import { Form,Button, Select, message } from "antd";
 import { _userAddView, _userView } from "@/api/userAdd";
-import { Form, Input, Button, Select, message } from "antd";
+
 
 const { Option } = Select;
 interface Props {}
@@ -85,7 +86,7 @@ class UpdateUser extends Component<Props, State> {
   }
   async userAddView(values: any) {
     try {
-      if (values.view_authority_text === undefined) {
+      if (values.view_id === undefined) {
         return message.error("内容不能为空");
       }
       let info = this.state.viewData.filter(

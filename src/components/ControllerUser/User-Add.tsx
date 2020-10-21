@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { FormInstance } from "antd/lib/form";
+import { _userAdd, _identity } from "@/api/userAdd";
 import { Form, Input, Button, Select, message } from "antd";
-import { _userAdd, _identity, _updateUser, _updateUsers } from "@/api/userAdd";
+
 
 const { Option } = Select;
 interface Props {}
@@ -112,7 +113,7 @@ class UserAdd extends Component<Props, State> {
       values.user_pwd === undefined &&
       values.identity_id === undefined
     ) {
-     return message.error("内容不能为空");
+      return message.error("内容不能为空");
     }
     switch (result.data.code) {
       case 0: {
