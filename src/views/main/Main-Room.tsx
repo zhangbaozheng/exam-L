@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import ContentBox from '@/components/ContentBox'
 
-import { _getRoomList, _gradeRoomDel, _gradeRoomAdd, _gradeListEdit } from '@/api/grade'
-import { Table, Space, message, Button, Modal, Form, Input, Select } from 'antd';
+import { _getRoomList, _gradeRoomDel, _gradeRoomAdd } from '@/api/grade'
+import { Table, Space, message, Button, Modal, Form, Input } from 'antd';
 
 
 
@@ -30,7 +30,7 @@ class Room extends Component<Props, State> {
                 key: 'action',
                 render: (text: any, record: { name: React.ReactNode; }) => (
                     <Space size="middle">
-                        <a onClick={() => { this.gradeRoomDel(record) }}>删除</a>
+                        <span onClick={() => { this.gradeRoomDel(record) }}>删除</span>
                     </Space>
                 ),
             },
@@ -84,7 +84,7 @@ class Room extends Component<Props, State> {
     async onFinish(values: any) {
         // console.log(values)
         const res = await _gradeRoomAdd(values);
-        console.log(res)
+        // console.log(res)
         if (res.data.code) {
             this.setState({
                 visible: false,
@@ -109,9 +109,9 @@ class Room extends Component<Props, State> {
     render() {
         return (
             <div>
-                <Button type="primary" onClick={() => { this.showModal() }}>
+                <Button type="primary" onClick={() => { this.showModal() }} style={{margin:'15px'}}>
                     +添加教室
-            </Button>
+                </Button>
                 {/* 弹框 */}
                 <Modal
                     title={this.state.title}
@@ -130,17 +130,18 @@ class Room extends Component<Props, State> {
                             label="教室号"
                             name="room_text"
                             rules={[{ required: true, message: '选择教室号!' }]}
+                            style={{marginRight:'100px'}}
                         >
                             <Input />
                         </Form.Item>
 
                         <Form.Item {...this.state.tailLayout}>
-                            <Button type="primary" htmlType="submit" onClick={() => { this.cancel() }}>
+                            <Button type="primary" htmlType="submit" onClick={() => { this.cancel() }} style={{marginRight:'20px'}}>
                                 取消
-                  </Button>
+                            </Button>
                             <Button type="primary" htmlType="submit">
                                 提交
-                  </Button>
+                           </Button>
                         </Form.Item>
                     </Form>
                 </Modal>

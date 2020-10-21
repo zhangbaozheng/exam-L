@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import ContentBox from '@/components/ContentBox'
-import { _getGradeList, _gradeListDel, _gradeListAdd, _gradeListEdit } from '@/api/grade'
+import { _getGradeList, _gradeListDel, _gradeListAdd, _gradeListEdit,_getRoomList,_getSubjectList } from '@/api/grade'
 import { Table, Space, message, Button, Modal, Form, Input, Select } from 'antd';
 const { Option } = Select;
 
@@ -62,9 +62,9 @@ class Grade extends Component<Props, State> {
         tailLayout: {
           wrapperCol: { offset: 8, span: 16 },
         },
-        room_id: '',
-        subject_id: '',
-        grade_id: '',
+        room_id: '',//输入的教室号对应的教室id
+        subject_id: '',//输入的课程名对应的id
+        grade_id: '',//输入的班级名对应的id
       }
 
     componentDidMount() {
@@ -73,7 +73,7 @@ class Grade extends Component<Props, State> {
     //班级信息
     async getGradeList() {
         const res = await _getGradeList();
-        // console.log(res.data.data)
+        console.log(res.data.data)
         if (res.data.code) {
             this.setState({
                 data: res.data.data
@@ -103,47 +103,75 @@ class Grade extends Component<Props, State> {
     });
   };
 
-  //获取room_id和subject_id
-  getId(value: any, option: any) {
-    // console.log(value,option)
-    this.setState({
-      room_id: option.item.room_id,
-      subject_id: option.item.subject_id,
-      grade_id: option.item.grade_id,
-    })
-  }
 
   //点击提交
   async onFinish(values: any) {
+    // console.log(values)
+
+    //获取输入的教室名对应的id
+    const roomRes = await _getRoomList()
+    const roomArr = roomRes.data.data.filter((item:any)=>{
+      return item.room_text.includes(values.room_text)
+    })
+    roomArr.map((val:any)=>{
+      return this.setState({
+        room_id:val.room_id
+      })
+    })
+
+   //获取输入的课程名对应的id
+    const subjectRes = await _getSubjectList()
+    const subjectArr = subjectRes.data.data.filter((item:any)=>{
+      return item.subject_text.includes(values.subject_text)
+    })
+    subjectArr.map((val:any)=>{
+      return this.setState({
+        subject_id:val.subject_id
+      })
+    })
+
+    //获取输入的班级名对应的id
+    const gradeArr = this.state.data.filter((item:any)=>{
+      return item.grade_name.includes(values.grade_name)
+    })
+    gradeArr.map((val:any)=>{
+      return this.setState({
+        grade_id:val.grade_id
+      })
+    })
+    
     let obj = {
-      grade_name: values.grade_name,
-      room_id: this.state.room_id,
-      subject_id: this.state.subject_id,
-      grade_id: this.state.grade_id
+      grade_name: values.grade_name,//输入的班级名
+      room_id: this.state.room_id,//输入的教室号对应的id
+      subject_id: this.state.subject_id,//输入的课程名对应的id
+      grade_id: this.state.grade_id,//输入的班级名对应的id
     }
+
     if (this.state.title === '添加班级') {
       const res = await _gradeListAdd(obj);
+      // console.log(res)
       if (res.data.code) {
+        this.getGradeList();
         this.setState({
           visible: false,
-        });
-        this.getGradeList();
+        });   
       }
     }
     if (this.state.title === '修改班级') {
       const res = await _gradeListEdit(obj);
       // console.log(res)
       if (res.data.code) {
+        this.getGradeList();
         this.setState({
           visible: false,
         });
-        this.getGradeList();
       }
     }
   };
+
+
   //点击弹框x
   handleCancel = (e: any) => {
-    // console.log(e);
     this.setState({
       visible: false,
     });
@@ -157,7 +185,7 @@ class Grade extends Component<Props, State> {
   render() {
     return (
       <div>
-        <Button type="primary" onClick={() => { this.showModal(1, null) }}>
+        <Button type="primary" onClick={() => { this.showModal(1, null) }} style={{margin:'15px'}}>
           +添加班级
         </Button>
         {/* 弹框 */}
@@ -189,7 +217,6 @@ class Grade extends Component<Props, State> {
               <Select
                 placeholder="选择教室号"
                 allowClear
-                onChange={(value, option) => { this.getId(value, option) }}
               >
                 {
                   this.state.data.map((item: any, index: number) => {
@@ -217,7 +244,7 @@ class Grade extends Component<Props, State> {
             </Form.Item>
 
             <Form.Item {...this.state.tailLayout}>
-              <Button type="primary" htmlType="submit" onClick={() => { this.cancel() }}>
+              <Button type="primary" htmlType="submit" onClick={() => { this.cancel() }} style={{marginRight:'10px'}}>
                 取消
               </Button>
               <Button type="primary" htmlType="submit">
