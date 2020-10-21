@@ -1,3 +1,11 @@
+/*
+ * @Descripttion: 
+ * @version: 1.0
+ * @Author: 赵舒婷
+ * @Date: 2020-10-21 08:51:37
+ * @LastEditors: 赵舒婷
+ * @LastEditTime: 2020-10-21 09:15:17
+ */
 
 interface IRoute {
     path?: any;
@@ -27,7 +35,7 @@ const NavList: IRoute[] = [
         name: '用户管理',
         children: [
             {   
-                path: '/index/useradd',
+                path: '/index/addUser',
                 name: '添加用户'
             },
             {   
@@ -53,7 +61,7 @@ const NavList: IRoute[] = [
         name: '班级管理',
         children: [
             {   
-                path: '/index/Grade',
+                path: '/index/grade',
                 name: '班级管理'
             },
             {   
@@ -69,11 +77,11 @@ const NavList: IRoute[] = [
     {
         name: '阅卷管理',
         children: [
-            {   path: '/index/ExamPaperClassList',
+            {   path: '/index/examPaperClassList',
                 name: '待批班级'
             }
         ]
-    },
+    }
 ]
 
 export default NavList

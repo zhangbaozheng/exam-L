@@ -2,11 +2,14 @@
 
 import { Layout, Menu } from 'antd';
 import NavList from '@/router/navList'
-import React, { Component } from 'react'
 import { getCookie } from '@/utils/index'
+import Loading from '@/components/Loading'
 import { NavLink } from 'react-router-dom';
 import RouterView from '@/router/RouteView'
+import { components } from '@/router/index'
+import React, { Component,Suspense } from 'react'
 import { NotificationOutlined } from '@ant-design/icons';
+
 
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
@@ -20,19 +23,25 @@ interface IRoute {
     name: string;
 }
 
+interface Cpn {
+    [key:string]: any
+}
+
 interface Props {
-  routes: IRoute[];
+    routes: IRoute[];
 }
 
 interface State {
-    routes: IRoute[]
+    routes: IRoute[] | null
+    navArr: IRoute[] | null
 }
 
 export default class Home extends Component<Props, State> {
     constructor(props:Props) {
         super(props)
         this.state = {
-            routes: []
+            routes: null,
+            navArr: null
         }
     }
     render() {
@@ -51,13 +60,13 @@ export default class Home extends Component<Props, State> {
                             style={{ height: '100%', borderRight: 0, }}
                         >
                             {
-                                NavList.map((item) => {
+                                (this.state.navArr || NavList).map((item) => {
                                     return <SubMenu key={item.name} icon={<NotificationOutlined />} title={item.name}>
                                         {
                                             item.children && item.children.map((value) => {
                                                 return <Menu.Item key={value.name}> <NavLink to={value.path}>{value.name}</NavLink></Menu.Item>
                                             })
-                                        } 
+                                        }
                                     </SubMenu>
                                 })
                             }
@@ -70,20 +79,23 @@ export default class Home extends Component<Props, State> {
                             minHeight: 280,
                             background: '#fff',
                         }}
-                    >
-                        <RouterView routes={this.props.routes}></RouterView>
+                    >   
+                        <Suspense fallback={<Loading />}>
+                            <RouterView routes={this.state.routes || this.props.routes}></RouterView>
+                        </Suspense>
                     </Content>
                 </Layout>
             </Layout>
         )
     }
     componentDidMount() {
-        this.disposalData()
-    }
-    disposalData() {
         let arr = JSON.parse((getCookie('permission') as string));
-        //item.view_id  item.view_authority_text
-        let children:any[] = [];
+        this.disposalData(arr)
+    }
+    // 生成动态路由
+    disposalData(arr: any[]) {
+        let children:IRoute[] = [];
+        let navArr:string[] = []
         arr.forEach((item:any) => {
             if(item.view_id !== 'login' && item.view_id !== 'main') {
                 let path = item.view_id.split('-')[1]
@@ -91,13 +103,33 @@ export default class Home extends Component<Props, State> {
                 children.push({
                     path: '/index/' + path,
                     name: item.view_authority_text,
-                    component
+                    component: (components as Cpn)[component]
                 })
+                navArr.push('/index/' + path)
             }
         })
         this.setState({
             routes: children
         })
-        console.log(children);
+        this.disposalNav(navArr)
+    }
+    // 生成动态nav
+    disposalNav(arr: string[]) {
+        let navArr:IRoute[] = [];
+        let navItem:any[] = [];
+        NavList.forEach((item) => {
+            navItem = (item.children as IRoute[]).filter((val) => {
+                return arr.indexOf(val.path) > -1
+            })
+            if((navItem as any[]).length) {
+                navArr.push({
+                    name: item.name,
+                    children: navItem
+                })
+            }
+        })
+        this.setState({
+            navArr
+        })
     }
 }
