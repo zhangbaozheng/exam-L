@@ -77,7 +77,6 @@ class UpdateUser extends Component<Props, State> {
   componentDidMount() {
     this.userView();
   }
-  //   message.success(result.data.msg);
   async userView() {
     let result = await _userView();
     this.setState({
@@ -85,24 +84,30 @@ class UpdateUser extends Component<Props, State> {
     });
   }
   async userAddView(values: any) {
-    let info = this.state.viewData.filter(
-      (item: any) => item.view_id === values.view_id
-    );
-    let obj = {
-      arr: info,
-      view_id: values.view_id,
-    };
-    let result = await _userAddView(obj);
-    switch (result.data.code) {
-      case 0: {
-        message.error(result.data.msg);
-        break;
+    try {
+      console.log(values === undefined);
+      if (values.view_authority_text === undefined) {
+        message.error("内容不能为空");
       }
-      case 1: {
-        message.success(result.data.msg);
-        break;
+      let info = this.state.viewData.filter(
+        (item: any) => item.view_id === values.view_id
+      );
+      let obj = {
+        arr: info,
+        view_id: values.view_id,
+      };
+      let result = await _userAddView(obj);
+      switch (result.data.code) {
+        case 0: {
+          message.error(result.data.msg);
+          break;
+        }
+        case 1: {
+          message.success(result.data.msg);
+          break;
+        }
       }
-    }
+    } catch (error) {}
   }
 }
 
