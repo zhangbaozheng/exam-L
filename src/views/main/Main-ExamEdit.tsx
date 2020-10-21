@@ -119,7 +119,7 @@ class ExamEdit extends Component<Props, State> {
                     <Form.Item>
                         <Button type="primary" htmlType="submit">
                             创建试卷
-                       </Button>
+                        </Button>
                     </Form.Item>
                 </Form>
             </div>

@@ -69,7 +69,7 @@ const NavList: IRoute[] = [
     {
         name: '阅卷管理',
         children: [
-            {   path: '/index',
+            {   path: '/index/ExamPaperClassList',
                 name: '待批班级'
             }
         ]

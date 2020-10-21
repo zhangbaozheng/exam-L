@@ -14,6 +14,11 @@ body,
     overflow: hidden;
 }
 
+.site-layout-background{
+    flex: 1;
+    overflow: auto;
+}
+
 .wyy-logo {
     width: 120px;
     height: 30px;
@@ -122,4 +127,158 @@ body,
     }
     
 
+}
+
+.hu-classify {
+    width: 100%;
+
+    .hu-add {
+        width: 100%;
+        height: 80px;
+
+        .ant-btn-primary {
+            width: 150px;
+            height: 50px;
+            font-size: 20px;
+        }
+    }
+
+    .hu-main {
+        width: 100%;
+
+        .ant-table-wrapper,
+        .ant-spin-nested-loading,
+        .ant-spin-container,
+        .ant-table,
+        .ant-table-container {
+            .ant-table-content {
+                width: 100%;
+
+                table {
+                    width: 100%;
+
+                    .ant-table-thead {
+                        width: 100%;
+
+                        >tr {
+                            >th {
+                                text-align: center;
+                            }
+                        }
+                    }
+
+                    .ant-table-tbody {
+                        >.ant-table-row {
+                            >.ant-table-cell {
+                                text-align: center;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+}
+
+.ant-modal {
+    .ant-modal-body {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+
+        >p {
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        #inp-dialogs {
+            width: 80%;
+            height: 46px;
+            border: 0;
+            border-bottom: 1px solid #aaa;
+            font-size: 20px;
+        }
+    }
+
+}
+
+.hu-examine{
+    width: 100%;
+    .examine-title{
+        width: 100%;
+        height: 200px;
+        background: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        box-shadow: 0px 0px 5px 3px #aaa;
+        border-radius: 10px;
+        .title-top{
+            height: 80px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            .left{
+                width: 10%;
+                font-size: 20px;
+                text-align: center;
+            }
+            .right{
+                width: 90%;
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                >span{
+                    padding: 5px;
+                    cursor: pointer;
+                }
+                .actives{
+                    background: blue;
+                    color: #fff;
+                }
+            }
+        }
+        .title-bottom{
+            height: 80px;
+            display: flex;
+            align-items: center;
+            >div{
+                margin-left: 50px;
+            }
+        }
+    }
+    .examine-main{
+        width: 100%;
+        margin-top: 50px;
+        box-shadow: 0px 0px 5px 3px #aaa;
+        border-radius: 10px;
+        ul{
+            width: 100%;
+            padding: 20px;
+            :hover{
+                background: rgb(239, 246, 248);
+            }
+            >li{
+                border-bottom: 1px solid #eee;
+                font-size: 18px;
+                padding: 20px 0;
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                .left{
+                    width: 90%;
+                    .hu-author{
+                        color: blue;
+                    }
+                }
+                .right{
+                    width: 10%;
+                }
+            }
+        }
+    }
 }
