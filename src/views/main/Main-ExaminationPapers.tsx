@@ -1,17 +1,25 @@
 import React, { Component } from 'react'
 import ContentBox from '@/components/ContentBox'
-import { Row, Col, Empty, Slider, Popconfirm, message, Button } from 'antd';
 import { _getExam, _getAnswer, _correctExam } from '@/api/exam'
+import { Row, Col, Empty, Slider, Popconfirm, message, Button } from 'antd';
+
 
 interface IProps {
     history: any
 }
-class ExaminationPapers extends Component<IProps> {
-    state = {
-        score: 0,
-        examData: [],   //试卷列表
-        answerData: [], //答案列表
-        text: '你确定提交阅卷吗？'
+
+interface IState{
+    [key:string]:any
+}
+class ExaminationPapers extends Component<IProps,IState> {
+    constructor(props:IProps){
+        super(props)
+        this.state = {
+            score: 0,
+            examData: [],   //试卷列表
+            answerData: [], //答案列表
+            text: '你确定提交阅卷吗？'
+        }
     }
     render() {
         return (
