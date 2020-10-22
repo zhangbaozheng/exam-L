@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import ContentBox from '@/components/ContentBox'
-import { Form, Input, Button, Select, DatePicker, InputNumber } from 'antd';
+import { Form, Input, Button, Select, DatePicker, InputNumber, message } from 'antd';
 import { _addTest, _getTestSubject, _getTestType } from '@/api/exam'
 import { RouteComponentProps, withRouter } from "react-router-dom"
 const { Option } = Select;
@@ -58,8 +58,12 @@ class ExamEdit extends Component<Props, {}> {
             end_time: Number(values.end_time)
         })
         const res = await _addTest(this.state.fields);
-
-        this.props.history.push({ pathname: "/index/examCreate", state: { values } })
+        if (res.data.code) {
+            message.info('添加成功');
+            this.props.history.push({ pathname: "/index/examCreate", state: { values } })
+        } else {
+            message.info('添加失败');
+        }
     };
     render() {
         return (
