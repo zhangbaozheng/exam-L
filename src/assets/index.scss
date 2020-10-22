@@ -74,6 +74,7 @@ body,
     top: 50%;
     margin-left:-15%;
     margin-top: -15%;
+    z-index: 9999;
     border-radius: 10px;
 }
 .login-form-forgot,.ant-checkbox-inner,#ant-checkbox-input,.ant-checkbox-checked{
@@ -242,12 +243,17 @@ body,
                         padding: 0;
                         margin: 0;
 
+                        :hover {
+                            background: #ccc;
+                        }
+
                         li {
                             width: 40px;
                             height: 40px;
                             line-height: 40px;
                             text-align: center;
-                            margin-left:10px ;
+                            margin-left: 10px;
+                            border-radius: 5px;
                         }
                     }
 
@@ -258,12 +264,21 @@ body,
                         padding: 0;
                         margin: 0;
 
+                        :hover {
+                            background: #ccc;
+                        }
+
                         li {
                             width: 40px;
                             height: 40px;
                             line-height: 40px;
                             text-align: center;
-                            margin-left:10px ;
+                            margin-left: 10px;
+                            border-radius: 5px;
+
+                            &:nth-child(2) {
+                                margin-right: 10px;
+                            }
                         }
                     }
 
@@ -274,9 +289,144 @@ body,
                 width: 100%;
                 height: 100%;
                 border: 1px solid #aaa;
+
+                >div {
+                        width: 100%;
+                        height: 100%;
+                    .ant-form-item,.ant-form-item-control {
+                        width: 100%;
+                        .ant-form-item-control-input-content {
+                            width: 100%;
+                            .ant-input {
+                                width: 100%;
+                                height: 100%;
+                                border: 0px;
+                                outline: none;
+                                z-index: 999;
+                            }
+                        }
+
+                    }
+
+                }
             }
         }
     }
+    .test-answer{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+
+        .test-answer-title {
+            width: 100%;
+        }
+
+        .test-content {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: start;
+            align-items: center;
+
+            .test-content-top {
+                height: 60px;
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                border: 1px solid #aaa;
+
+                ul {
+                    &:nth-child(1) {
+                        height: 100%;
+                        display: flex;
+                        justify-content: space-around;
+                        align-items: center;
+                        padding: 0;
+                        margin: 0;
+
+                        :hover {
+                            background: #ccc;
+                        }
+
+                        li {
+                            width: 40px;
+                            height: 40px;
+                            line-height: 40px;
+                            text-align: center;
+                            margin-left: 10px;
+                            border-radius: 5px;
+                        }
+                    }
+
+                    &:nth-child(2) {
+                        display: flex;
+                        justify-content: space-around;
+                        align-items: center;
+                        padding: 0;
+                        margin: 0;
+
+                        :hover {
+                            background: #ccc;
+                        }
+
+                        li {
+                            width: 40px;
+                            height: 40px;
+                            line-height: 40px;
+                            text-align: center;
+                            margin-left: 10px;
+                            border-radius: 5px;
+
+                            &:nth-child(2) {
+                                margin-right: 10px;
+                            }
+                        }
+                    }
+
+                }
+            }
+
+            .test-content-bottom {
+                width: 100%;
+                height: 100%;
+                border: 1px solid #aaa;
+
+                >div {
+                        width: 100%;
+                        height: 100%;
+                    .ant-form-item,.ant-form-item-control {
+                        width: 100%;
+                        .ant-form-item-control-input-content {
+                            width: 100%;
+                            .ant-input {
+                                width: 100%;
+                                height: 100%;
+                                border: 0px;
+                                outline: none;
+                                z-index: 999;
+                            }
+                        }
+
+                    }
+
+                }
+            }
+        }
+    }
+    .ant-btn-primary{
+        margin-top: 30px;
+        width: 150px;
+        height: 50px;
+        >span{
+            font-size: 20px;
+        }
+    }
+  #box1,#box2{
+      width: 100%;
+  }
 }
 
 .hu-login {

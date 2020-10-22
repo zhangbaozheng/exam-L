@@ -1,7 +1,9 @@
 
 import { lazy } from 'react'
-const Home = lazy(()=> import("@/views/Home"))
-const Login = lazy(()=> import("@/views/Login"))
+import Home from "@/views/Home"
+import Login from "@/views/Login"
+// const Home = lazy(()=> import("@/views/Home"))
+// const Login = lazy(()=> import("@/views/Login"))
 const Error = lazy(()=> import("@/views/404"))
 const Menu = lazy(()=> import("@/views/main/Main-Menu"))
 const Room = lazy(()=> import("@/views/main/Main-Room"))
@@ -90,7 +92,7 @@ export const routes = [
                 component: EditQuestions
             },
             {
-                path: '/index/questionsDetail',
+                path: '/index/questionsDetail/:id',
                 name: "试题详情",
                 component: QuestionsDetail
             },
@@ -160,11 +162,6 @@ export const routes = [
         path: "/login",
         name: "login",
         component: Login,
-    },
-    {
-        path: '/*',
-        name: "404",
-        component: Error
     }
 ];
 
