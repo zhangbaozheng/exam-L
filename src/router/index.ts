@@ -2,6 +2,7 @@
 import { lazy } from 'react'
 const Home = lazy(()=> import("@/views/Home"))
 const Login = lazy(()=> import("@/views/Login"))
+const Error = lazy(()=> import("@/views/404"))
 const Menu = lazy(()=> import("@/views/main/Main-Menu"))
 const Room = lazy(()=> import("@/views/main/Main-Room"))
 const Grade = lazy(()=> import("@/views/main/Main-Grade"))
@@ -25,6 +26,7 @@ const ExamPaperClassmate = lazy(()=> import("@/views/main/Main-ExamPaperClassmat
 export const components = {
     Menu,
     Room,
+    Error,
     Grade,
     Student,
     AddUser,
@@ -54,6 +56,7 @@ export const routes = [
         name: "index",
         component: Home,
         children: [
+            
             {
                 path: '/index/menu',
                 name: "添加菜单",
@@ -143,8 +146,13 @@ export const routes = [
                 path: "/index/examList",
                 name: "试卷列表",
                 component: ExamList,
+            },
+            {
+                path: '/index/*',
+                name: "404",
+                component: Error
             }
-        ],
+        ]
     },
     {
         path: "/login",

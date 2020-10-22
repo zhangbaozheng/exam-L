@@ -101,10 +101,15 @@ export default class Home extends Component<Props, State> {
                             minHeight: 280,
                             background: '#fff',
                         }}
-                    >   
-                        <Suspense fallback={<Loading />}>
-                            <RouterView routes={this.state.routes || this.props.routes}></RouterView>
-                        </Suspense>
+                    >
+                        <div className='wy-welcome'>
+                            欢迎登录考试管理系统
+                        </div>
+                        <div className='wy-router'>
+                            <Suspense fallback={<Loading />}>
+                                <RouterView routes={this.state.routes || this.props.routes}></RouterView>
+                            </Suspense>
+                        </div>
                     </Content>
                 </Layout>
             </Layout>
@@ -129,6 +134,12 @@ export default class Home extends Component<Props, State> {
                 })
                 navArr.push('/index/' + path)
             }
+        })
+        // 添加404路由
+        children.push({
+            path: '/index/*',
+            name: "404",
+            component: components['Error']
         })
         this.setState({
             routes: children

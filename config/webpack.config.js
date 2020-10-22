@@ -324,7 +324,10 @@ module.exports = function(webpackEnv) {
       rules: [
         // Disable require.ensure as it's not a standard language feature.
         { parser: { requireEnsure: false } },
-
+        {
+  　　     test: /\.html$/,
+  　　     use: 'raw-loader',
+        },
         // First, run the linter.
         // It's important to do this before Babel processes the JS.
         {
