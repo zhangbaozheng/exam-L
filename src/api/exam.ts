@@ -65,4 +65,10 @@ export function _getQuesType(){
     let url='/exam/getQuestionsType'
     return request.get(url)
 }
+//按条件获取试题
 
+export function _getQuesCon(subject_id: any,exam_id:any,questions_type_id:any)
+{
+    let url=`/exam/questions/condition?subject_id=${subject_id}&exam_id=${exam_id}&questions_type_id=${questions_type_id}`;
+    return request.get(url)
+}
