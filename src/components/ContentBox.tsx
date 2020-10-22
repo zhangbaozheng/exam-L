@@ -7,7 +7,6 @@ interface Props {
 
 const ContentBox = (props:Props):any => {
     return class ContentBox extends Component {
-        
         render() {
             return <div style={{width:"100%",height:"100%",padding: '20px',background:'#f0f2f5'}}>
                     <h2 style={{ padding: '10px 0' }}>{props.title}</h2>

@@ -1,36 +1,57 @@
 import React, { Component } from 'react'
-import ContentBox from '@/components/ContentBox'
+import { Select, Button, Tag } from 'antd'
+import NotData from "@/components/NotData"
 import { inject, observer } from "mobx-react"
+import ContentBox from '@/components/ContentBox'
+import { SearchOutlined } from '@ant-design/icons'
 import { RouteComponentProps } from "react-router-dom"
-import { Select, Button } from 'antd';
-import { SearchOutlined } from '@ant-design/icons';
+
 const { Option } = Select;
 
 interface IProps {
-    examine: any;
+    examine: any
+    home:any
 }
 interface IState {
     flag: boolean;
     curIndex: number
+    exam_id: string | undefined
+    subject_id: string | undefined
+    questions_type_id: string | undefined
 }
 
 
-@inject('examine') @observer
+@inject('examine','home') @observer
 class WatchQuestions extends Component<IProps & RouteComponentProps, IState> {
     state = {
         flag: false,
-        curIndex: -1
+        curIndex: -1,
+        exam_id: undefined,
+        subject_id: undefined,
+        questions_type_id: undefined
     }
     componentDidMount() {
-        console.log(this);
         this.props.examine.getExaminList()
         this.props.examine.getSubject()
         this.props.examine.getType()
         this.props.examine.getQuestion()
+        this.props.examine.getAllUser()
     }
 
-    handleChange(value: any) {
-        console.log(`selected ${value}`);
+    handleChange(type: string, value: any) {
+
+        switch (type) {
+            case "examid":
+                this.setState({
+                    exam_id: value
+                })
+            break
+            case "question":
+                    this.setState({
+                        questions_type_id:value
+                })
+            break
+        }
     }
     changeAll = () => {
         this.setState({
@@ -38,19 +59,23 @@ class WatchQuestions extends Component<IProps & RouteComponentProps, IState> {
             curIndex: -1
         })
     }
-    changeCruindex = (ind: number) => {
+    changeCruindex = (ind: number, id: string) => {
         this.setState({
-            curIndex: ind
+            curIndex: ind,
+            subject_id: id
         })
     }
     goDetail = (id: string) => {
-        // this.props.history.push(`public/spa/spa/main/questions/detail?id=${id}`)
-        window.location.href = "http://127.0.0.1:7001/public/spa/spa/main/questions/detail?id=4vu7t9-t9vv08-chvz3r-n8i3nq"
+        this.props.home.setTitle('详情页面')
+        this.props.history.push(`/index/examDetail/${id}`)
+    }
+    search = () => {
+        const { exam_id,subject_id,questions_type_id } = this.state
+        this.props.examine.getText(exam_id,subject_id,questions_type_id)
     }
     render() {
-        const { examineList, subjectList, subjectType, questionsType } = this.props.examine
+        const { examineList, subjectList, subjectType, questionsType, getText } = this.props.examine
         const { flag, curIndex } = this.state
-        console.log(subjectType, questionsType)
         return (
             <div className="hu-examine">
                 <div className="examine-title">
@@ -62,7 +87,7 @@ class WatchQuestions extends Component<IProps & RouteComponentProps, IState> {
                                 subjectList.map((item: any, ind: number) => {
                                     return <span key={ind}
                                         className={flag || curIndex === ind ? 'actives' : ''}
-                                        onClick={() => this.changeCruindex(ind)}>
+                                        onClick={() => this.changeCruindex(ind, item.subject_id)}>
                                         {item.subject_text}
                                     </span>
                                 })
@@ -72,7 +97,7 @@ class WatchQuestions extends Component<IProps & RouteComponentProps, IState> {
                     <div className="title-bottom">
                         <div>
                             <span>考试类型：</span>
-                            <Select style={{ width: 200 }} onChange={this.handleChange}>
+                            <Select style={{ width: 200 }} onChange={this.handleChange.bind(this, 'examid')}>
                                 {
                                     subjectType.map((item: any, index: number) => {
                                         return <Option value={item.exam_id} key={index}>{item.exam_name}</Option>
@@ -82,7 +107,7 @@ class WatchQuestions extends Component<IProps & RouteComponentProps, IState> {
                         </div>
                         <div>
                             <span>题目类型：</span>
-                            <Select style={{ width: 200 }} onChange={this.handleChange}>
+                            <Select style={{ width: 200 }} onChange={this.handleChange.bind(this, 'question')}>
                                 {
                                     questionsType.map((item: any, index: number) => {
                                         return <Option value={item.questions_type_id} key={index}>{item.questions_type_text}</Option>
@@ -91,31 +116,37 @@ class WatchQuestions extends Component<IProps & RouteComponentProps, IState> {
                             </Select>
                         </div>
                         <div>
-                            <Button type="primary" icon={<SearchOutlined />}>查询</Button>
+                            <Button type="primary" icon={<SearchOutlined />} onClick={() => this.search()}>查询</Button>
                         </div>
                     </div>
                 </div>
                 <div className="examine-main">
-                    <ul>
+                    {
+                        examineList.length === 0?<NotData/>:
+                        <ul>
                         {
                             examineList.map((item: any, index: number) => {
-                                return <li key={index}>
-                                    <div className="left" onClick={() => this.goDetail(item.json_path)}>
-                                        <p>{item.title}</p>
+                                return <li key={index} >
+                                    <div className="left" onClick={() => this.goDetail(item.questions_id)}>
+                                        <h2>{item.title}</h2>
                                         <p>
-                                            <span>代码补全</span>
+                                            <Tag color="blue">{item.questions_type_text}</Tag>
+                                            <Tag color="blue">{item.subject_text}</Tag>
+                                            <Tag color="orange">{item.exam_name}</Tag>
                                         </p>
                                         <p className="hu-author">
-                                            <span>heinan发布</span>
+                                            <span>{item.user_name}发布</span>
                                         </p>
                                     </div>
                                     <div className="right">
-                                        <span>编辑</span>
+                                        <a href="">编辑</a>
                                     </div>
+
                                 </li>
                             })
                         }
                     </ul>
+                    }
                 </div>
             </div>
         )

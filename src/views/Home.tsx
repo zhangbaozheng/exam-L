@@ -161,7 +161,7 @@ export default class Home extends Component<Props, State> {
         this.setState({ visible: flag });
     }
     logoff(){ //退出登录
-        // removeCookie('token');
+        removeCookie('token');
         removeCookie('userInfo');
         removeCookie('permission');
         this.props.history.push('/login');

@@ -75,7 +75,7 @@ export const routes = [
                 component: ExamEdit
             },
             {
-                path: '/index/examDetail',
+                path: '/index/examDetail/:id',
                 name: "试卷详情",
                 component: ExamDetail
             },

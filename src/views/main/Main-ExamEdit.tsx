@@ -2,19 +2,20 @@ import React, { Component } from 'react'
 import ContentBox from '@/components/ContentBox'
 import { Form, Input, Button, Select, DatePicker, InputNumber } from 'antd';
 import { _addTest, _getTestSubject, _getTestType } from '@/api/exam'
+import { RouteComponentProps, withRouter } from "react-router-dom"
 const { Option } = Select;
 const onFinishFailed = (errorInfo: any) => {
     console.log('Failed:', errorInfo);
 };
 
-interface Props {
 
+interface Iprops {
+    history: any
 }
-interface State {
+type Props = Iprops & RouteComponentProps
 
-}
 
-class ExamEdit extends Component<Props, State> {
+class ExamEdit extends Component<Props, {}> {
     state = {
         fields: {
             subject_id: '',
@@ -32,7 +33,7 @@ class ExamEdit extends Component<Props, State> {
         this.getTestType()
 
     }
-
+    //考试类型
     async getTestType() {
         const res = await _getTestType();
         if (res.data.code) {
@@ -41,6 +42,7 @@ class ExamEdit extends Component<Props, State> {
             })
         }
     }
+    //课程
     async getTestSubject() {
         const res = await _getTestSubject();
         if (res.data.code) {
@@ -50,17 +52,18 @@ class ExamEdit extends Component<Props, State> {
         }
     }
     onFinish = async (values: any) => {
-        console.log('Success:', values);
         values = Object.assign(this.state.fields, values, {
             number: Number(values.number),
             start_time: Number(values.start_time),
             end_time: Number(values.end_time)
         })
         const res = await _addTest(this.state.fields);
+
+        this.props.history.push({ pathname: "/index/examCreate", state: { values } })
     };
     render() {
         return (
-            <div className='s-add'>
+            <div className='s-add' >
                 <Form
                     initialValues={this.state.fields}
                     name="basic"
@@ -103,21 +106,24 @@ class ExamEdit extends Component<Props, State> {
                             }
                         </Select>
                     </Form.Item>
-                    <Form.Item name={['number']} label="设置题量" rules={[{ type: 'number', min: 0, max: 99 }]}>
+                    <Form.Item name={['number']} label="设置题量"
+                        rules={[{ required: true, type: 'number', min: 0, max: 99 }]}
+                        style={{ marginBottom: '70px' }}
+                    >
                         <InputNumber />
                     </Form.Item>
                     <div className="s-time">
-                        <Form.Item name="start_time" label="创建时间" >
+                        <Form.Item name="start_time" label="创建时间" rules={[{ required: true }]} >
                             <DatePicker />
                         </Form.Item>
-                        <span>-</span>
+                        <span style={{ margin: '0px 20px' }}>-</span>
                         <Form.Item name="end_time" >
                             <DatePicker />
                         </Form.Item>
                     </div>
 
                     <Form.Item>
-                        <Button type="primary" htmlType="submit">
+                        <Button type="primary" htmlType="submit" >
                             创建试卷
                         </Button>
                     </Form.Item>
@@ -127,8 +133,8 @@ class ExamEdit extends Component<Props, State> {
     }
 }
 
-export default ContentBox({
+export default withRouter(ContentBox({
     title: '创建试卷',
     Module: ExamEdit
-})
+}))
 

@@ -2,7 +2,6 @@ import { Tabs, Table } from "antd";
 import userAll from '@/config/User-Show'
 import React, { Component } from 'react'
 import ContentBox from '@/components/ContentBox'
-
 import {
     _user,
     _identity,

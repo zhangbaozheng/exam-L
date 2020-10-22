@@ -1,9 +1,10 @@
 import request from "@/utils/request"
 import React, { Component } from 'react'
+import Dialogs from "@/components/Dialogs";
+import { inject, observer } from "mobx-react"
 import ContentBox from '@/components/ContentBox'
 import { Button, Table, Space,message } from "antd"
-import { inject, observer } from "mobx-react"
-import Dialogs from "@/components/Dialogs";
+
 const { Column } = Table;
 
 interface IProps {
@@ -22,7 +23,6 @@ class QuestionsType extends Component<IProps, IState> {
         id: ''
     }
     async changeId(val:any) {
-        console.log(val.questions_type_id)
         const result = await request.post('/exam/delQuestionsType',{
             id:val.questions_type_id
         })

@@ -9,7 +9,7 @@ function handleChange(value: string) {
     console.log(`selected ${value}`);
 }
 interface Props {
-
+    history: any
 }
 interface State {
 
@@ -83,7 +83,7 @@ class ExamList extends Component<Props, State> {
                 key: '2',
                 fixed: 'right',
                 width: 100,
-                render: () => <a onClick={() => this.getTestDetail('8tl7os-r49tld')}>详情</a>,
+                render: () => <span onClick={() => this.getTestDetail('8tl7os-r49tld')}>详情</span>,
             },
         ];
         return (

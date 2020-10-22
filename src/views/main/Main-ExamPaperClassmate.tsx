@@ -173,7 +173,6 @@ class ExamPaperClassmate extends Component<IProps, IState> {
         }
 
     }
-
 }
 
 export default ContentBox({
