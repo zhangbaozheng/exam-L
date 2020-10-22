@@ -5,6 +5,7 @@ import Menu from '@/views/main/Main-Menu'
 import Room from '@/views/main/Main-Room'
 import Grade from '@/views/main/Main-Grade'
 import Student from '@/views/main/Main-Student'
+import moduleName from '@/views/main/Main-Chart'
 import AddUser from "@/views/main/Main-AddUser"
 import AddExam from "@/views/main/Main-AddExam"
 import ShowUser from "@/views/main/Main-ShowUser"
@@ -13,12 +14,13 @@ import ExamEdit from "@/views/main/Main-ExamEdit"
 import ExamDetail from '@/views/main/Main-ExamDetail'
 import AddQuestions from '@/views/main/Main-AddQuestions'
 import EditQuestions from '@/views/main/Main-EditQuestions'
-import QuestionsType from '@/views/main/Main-QuestionsType';
-import WatchQuestions from '@/views/main/Main-WatchQuestions';
-import QuestionsDetail from '@/views/main/Main-QuestionsDetail';
+import QuestionsType from '@/views/main/Main-QuestionsType'
+import WatchQuestions from '@/views/main/Main-WatchQuestions'
+import QuestionsDetail from '@/views/main/Main-QuestionsDetail'
 import ExaminationPapers from "@/views/main/Main-ExaminationPapers"
-import ExamPaperClassList from "@/views/main/Main-ExamPaperClassList"
 import ExamPaperClassmate from "@/views/main/Main-ExamPaperClassmate"
+import ExamPaperClassList from "@/views/main/Main-ExamPaperClassList"
+
 
 
 export const components = {
@@ -104,8 +106,13 @@ export const routes = [
             },
             {
                 path: '/index/showUser',
-                name: "用户展示",
+                name: "用户分数展示",
                 component: ShowUser
+            },
+            {
+                path: '/index/chart',
+                name: "用户展示",
+                component: moduleName
             },
             {
                 path: '/index/Grade',
