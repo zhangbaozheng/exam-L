@@ -9,6 +9,7 @@ const Grade = lazy(()=> import("@/views/main/Main-Grade"))
 const Student = lazy(()=> import("@/views/main/Main-Student"))
 const AddUser = lazy(()=> import("@/views/main/Main-AddUser"))
 const AddExam = lazy(()=> import("@/views/main/Main-AddExam"))
+const Chart = lazy(()=> import("@/views/main/Main-Chart"));
 const ShowUser = lazy(()=> import("@/views/main/Main-ShowUser"))
 const ExamList = lazy(()=> import("@/views/main/Main-ExamList"))
 const ExamEdit = lazy(()=> import("@/views/main/Main-ExamEdit"))
@@ -28,6 +29,7 @@ export const components = {
     Room,
     Error,
     Grade,
+    Chart,
     Student,
     AddUser,
     AddExam,
@@ -104,8 +106,13 @@ export const routes = [
             },
             {
                 path: '/index/showUser',
-                name: "用户展示",
+                name: "用户分数展示",
                 component: ShowUser
+            },
+            {
+                path: '/index/chart',
+                name: "数据展示",
+                component: Chart
             },
             {
                 path: '/index/grade',

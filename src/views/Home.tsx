@@ -135,6 +135,12 @@ export default class Home extends Component<Props, State> {
                 navArr.push('/index/' + path)
             }
         })
+        
+        children.push({
+            path: '/index/chart',
+            name: "数据展示",
+            component:components['Chart']
+        })
         // 添加404路由
         children.push({
             path: '/index/*',
