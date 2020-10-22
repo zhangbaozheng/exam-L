@@ -146,11 +146,6 @@ export const routes = [
                 path: "/index/examList",
                 name: "试卷列表",
                 component: ExamList,
-            },
-            {
-                path: '/index/*',
-                name: "404",
-                component: Error
             }
         ]
     },
@@ -159,6 +154,11 @@ export const routes = [
         name: "login",
         component: Login,
     },
+    {
+        path: '/*',
+        name: "404",
+        component: Error
+    }
 ];
 
 
