@@ -53,12 +53,14 @@ class ExamList extends Component<Props, State> {
     }
     async getTestDetail(id: string) {
         const res = await _getTestDetail(id);
-        console.log(res);
-        // if (res.data.code) {
-        //   this.setState({
-        //     sub: res.data.data
-        //   })
-        // }
+        if (res.data.code) {
+            this.setState({
+                sub: res.data.data
+            })
+        }
+    }
+    goDetail(exam_exam_id: string) {
+        this.props.history.push({pathname:`/index/ExamDetail/${exam_exam_id}`,state:{exam_exam_id}})
     }
 
     render() {
@@ -83,7 +85,7 @@ class ExamList extends Component<Props, State> {
                 key: '2',
                 fixed: 'right',
                 width: 100,
-                render: () => <span onClick={() => this.getTestDetail('8tl7os-r49tld')}>详情</span>,
+                render: (text: any, record: any) => <span onClick={() => this.goDetail(record.exam_exam_id)}>详情</span>,
             },
         ];
         return (

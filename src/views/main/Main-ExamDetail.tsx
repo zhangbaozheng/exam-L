@@ -48,9 +48,9 @@ class ExamDetail extends Component<Props, State> {
                 {
                     this.state.data.map((item:any)=>{
                     return <p key={item.questions_id} className='s-item'>
-                        <p>{item.title}</p>
-                    <span>{item.questions_stem}</span>
-                    </p>
+                                <p>{item.title}</p>
+                                <span>{item.questions_stem}</span>
+                            </p>
                     })
                 }
             </div>
