@@ -25,7 +25,6 @@ class Login extends Component<ILogin> {
         setCookie('userInfo',JSON.stringify(userInfo))
         const result = await _GetUserNew(userInfo.user_id)
         if(result.data.code === 1){
-            console.log(result);
             // 保存权限数组
             setCookie('permission',JSON.stringify(result.data.data))
             // 登录成功跳转到首页

@@ -2,6 +2,7 @@
 import echarts from "echarts";
 import { Select } from "antd";
 import _ from "lodash";
+import ContentBox from '@/components/ContentBox'
 import React, { Component } from "react";
 import { _getGradeList, _gradeStudent, _studentName } from "@/api/grade";
 const { Option } = Select;
@@ -96,4 +97,8 @@ class MainChart extends Component<Props, State> {
     });
   }
 }
-export default MainChart;
+export default ContentBox({
+  title: '视图文件',
+  Module: MainChart
+})
+

@@ -1,32 +1,35 @@
 
-import Home from "@/views/Home"
-import Login from "@/views/Login"
-import Menu from '@/views/main/Main-Menu'
-import Room from '@/views/main/Main-Room'
-import Grade from '@/views/main/Main-Grade'
-import Student from '@/views/main/Main-Student'
-import moduleName from '@/views/main/Main-Chart'
-import AddUser from "@/views/main/Main-AddUser"
-import AddExam from "@/views/main/Main-AddExam"
-import ShowUser from "@/views/main/Main-ShowUser"
-import ExamList from "@/views/main/Main-ExamList"
-import ExamEdit from "@/views/main/Main-ExamEdit"
-import ExamDetail from '@/views/main/Main-ExamDetail'
-import AddQuestions from '@/views/main/Main-AddQuestions'
-import EditQuestions from '@/views/main/Main-EditQuestions'
-import QuestionsType from '@/views/main/Main-QuestionsType'
-import WatchQuestions from '@/views/main/Main-WatchQuestions'
-import QuestionsDetail from '@/views/main/Main-QuestionsDetail'
-import ExaminationPapers from "@/views/main/Main-ExaminationPapers"
-import ExamPaperClassmate from "@/views/main/Main-ExamPaperClassmate"
-import ExamPaperClassList from "@/views/main/Main-ExamPaperClassList"
-
+import { lazy } from 'react'
+const Home = lazy(()=> import("@/views/Home"))
+const Login = lazy(()=> import("@/views/Login"))
+const Error = lazy(()=> import("@/views/404"))
+const Menu = lazy(()=> import("@/views/main/Main-Menu"))
+const Room = lazy(()=> import("@/views/main/Main-Room"))
+const Grade = lazy(()=> import("@/views/main/Main-Grade"))
+const Student = lazy(()=> import("@/views/main/Main-Student"))
+const AddUser = lazy(()=> import("@/views/main/Main-AddUser"))
+const AddExam = lazy(()=> import("@/views/main/Main-AddExam"))
+const Chart = lazy(()=> import("@/views/main/Main-Chart"));
+const ShowUser = lazy(()=> import("@/views/main/Main-ShowUser"))
+const ExamList = lazy(()=> import("@/views/main/Main-ExamList"))
+const ExamEdit = lazy(()=> import("@/views/main/Main-ExamEdit"))
+const ExamDetail = lazy(()=> import("@/views/main/Main-ExamDetail"))
+const AddQuestions = lazy(()=> import("@/views/main/Main-AddQuestions"))
+const EditQuestions = lazy(()=> import("@/views/main/Main-EditQuestions"))
+const QuestionsType = lazy(()=> import("@/views/main/Main-QuestionsType"))
+const WatchQuestions = lazy(()=> import("@/views/main/Main-WatchQuestions"))
+const QuestionsDetail = lazy(()=> import("@/views/main/Main-QuestionsDetail"))
+const ExaminationPapers = lazy(()=> import("@/views/main/Main-ExaminationPapers"))
+const ExamPaperClassList = lazy(()=> import("@/views/main/Main-ExamPaperClassList"))
+const ExamPaperClassmate = lazy(()=> import("@/views/main/Main-ExamPaperClassmate"))
 
 
 export const components = {
     Menu,
     Room,
+    Error,
     Grade,
+    Chart,
     Student,
     AddUser,
     AddExam,
@@ -44,13 +47,10 @@ export const components = {
     ExamPaperClassmate
 }
 
-
-
-
 export const routes = [
     {
         path: "/",
-        redirect: "/index",
+        redirect: "/login",
         name: "/",
     },
     {
@@ -58,49 +58,49 @@ export const routes = [
         name: "index",
         component: Home,
         children: [
+            
             {
                 path: '/index/menu',
                 name: "添加菜单",
                 component: Menu
             },
             {
-                path: '/index/ExamPaperClassList',
+                path: '/index/examPaperClassList',
                 name: "批卷班级",
                 component: ExamPaperClassList
             },
             {
-                path: '/index/ExamPaperClassmate',
+                path: '/index/examPaperClassmate',
                 name: "待批试卷",
                 component: ExamPaperClassmate
             },
             {
-                path: '/index/ExamEdit',
+                path: '/index/examEdit',
                 name: "创建试卷",
                 component: ExamEdit
             },
             {
-                path: '/index/ExamDetail',
+                path: '/index/examDetail/:id',
                 name: "试卷详情",
                 component: ExamDetail
             },
             {
-                path: '/index/EditQuestions',
+                path: '/index/editQuestions',
                 name: "编辑试题",
                 component: EditQuestions
             },
             {
-                path: '/index/QuestionsDetail',
+                path: '/index/questionsDetail',
                 name: "试题详情",
                 component: QuestionsDetail
             },
             {
-                path: '/index/ExaminationPapers',
+                path: '/index/examinationPapers/:id',
                 name: "阅卷",
                 component: ExaminationPapers
             },
-
             {
-                path: '/index/useradd',
+                path: '/index/addUser',
                 name: "添加用户",
                 component: AddUser
             },
@@ -111,11 +111,11 @@ export const routes = [
             },
             {
                 path: '/index/chart',
-                name: "用户展示",
-                component: moduleName
+                name: "数据展示",
+                component: Chart
             },
             {
-                path: '/index/Grade',
+                path: '/index/grade',
                 name: '班级管理',
                 component: Grade,
             },
@@ -154,13 +154,18 @@ export const routes = [
                 name: "试卷列表",
                 component: ExamList,
             }
-        ],
+        ]
     },
     {
         path: "/login",
         name: "login",
         component: Login,
     },
+    {
+        path: '/*',
+        name: "404",
+        component: Error
+    }
 ];
 
 

@@ -14,12 +14,12 @@ export function _getGradeList() {
 }
 
 //删除班级
-export function _gradeListDel(id: string) {
-  return request.delete("/manger/grade/delete", {
-    data: {
-      grade_id: id,
-    },
-  });
+export function _gradeListDel(id:string) {
+  return request.delete('/manger/grade/delete',{
+    params: {
+      grade_id: id
+    }
+  })
 }
 
 //添加班级
@@ -63,6 +63,21 @@ export function _gradeRoomDel(id: string) {
 export function _gradeRoomAdd(value: any) {
   return request.post("/manger/room", value);
 }
+
+
+
+
+
+//获取课程信息
+export function _getSubjectList() {
+  return request.get('/exam/subject')
+}
+
+
+
+
+
+
 
 //学生管理
 //学生数据信息

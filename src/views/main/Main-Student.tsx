@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import ContentBox from '@/components/ContentBox'
 import { _getStudentList, _gradeStudentDel, _getGradeList, _getRoomList } from '@/api/grade'
-import { Table, Space, message, Button, Input, Select } from 'antd';
+import { Table, Space, message, Button, Input, Select,Form } from 'antd';
+import { FormInstance } from 'antd/lib/form';
 const { Option } = Select;
 
 
@@ -12,10 +13,15 @@ interface State {
     columns: any,
     data: any,
     gradeData: any,
-    roomData: any
+    roomData: any,
+    searchList:any,
+    isFlag:boolean,
+    isShow:boolean,
+    
 }
 
 class Student extends Component<Props, State> {
+    formRef = React.createRef<FormInstance>();
     state: any = {
         columns: [
             {
@@ -48,15 +54,36 @@ class Student extends Component<Props, State> {
                 key: 'action',
                 render: (text: any, record: { name: React.ReactNode; }) => (
                     <Space size="middle">
-                        <a onClick={() => { this.gradeRoomDel(record) }}>删除</a>
+                        <span onClick={() => { this.gradeRoomDel(record) }}>删除</span>
                     </Space>
                 ),
             },
         ],
         data: [],
         roomData: [],
-        gradeData: []
-
+        gradeData: [],
+        searchList:[],//搜索结果列表
+        isFlag:true,//控制第一个table的显示隐藏
+        isShow:false,//控制第二个table的显示隐藏
+        layout : {
+            labelCol: { span: 8 },
+            wrapperCol: { span: 16 },
+        },
+        tailLayout : {
+            wrapperCol: { offset: 8, span: 16 },
+        },
+        arr:[//提取出两个select框中不同的项
+          {
+            name:'room_text',
+            placeholder:'教室号',
+            list:'roomData'
+          },
+          {
+            name:'grade_name',
+            placeholder:'班级名',
+            list:'gradeData'
+          }
+        ],
     }
 
     componentDidMount() {
@@ -88,22 +115,8 @@ class Student extends Component<Props, State> {
         }
     }
 
-    onChange(value: any) {
-        // console.log(`selected ${value}`);
-    }
 
-    onBlur() {
-        // console.log('blur');
-    }
-
-    onFocus() {
-        // console.log('focus');
-    }
-
-    onSearch(val: any) {
-        // console.log('search:', val);
-    }
-
+    //班级下拉列表内容
     async getGradeList() {
         const res = await _getGradeList();
         // console.log(res)
@@ -113,8 +126,11 @@ class Student extends Component<Props, State> {
             })
         }
     }
+
+    //教室下拉列表内容
     async getRoomList() {
         const res = await _getRoomList();
+        // console.log(res)
         if (res.data.code) {
             this.setState({
                 roomData: res.data.data
@@ -122,58 +138,73 @@ class Student extends Component<Props, State> {
         }
     }
 
+  //点击搜索    
+  onFinish = (values:any) => {
+    // console.log(values);
+    let result = [];
+    result = this.state.data.filter((item:any)=>{
+        if(values.student_name!== undefined){
+            return item.student_name.includes(values.student_name)
+        }else if(values.room_text!== undefined){
+            return item.room_text.includes(values.room_text)
+        }else if(values.grade_name!== undefined){
+            return item.grade_name.includes(values.grade_name)
+        }
+        return values
+    })
+   
+    this.setState({
+        searchList:result,
+        isFlag:false,
+        isShow:true
+    })
+  };
 
+  //点击重置
+  onReset = () => {
+    //   console.log(this.formRef)
+    this.formRef.current&&this.formRef.current.resetFields();
+  };
 
-
+ 
 
     render() {
         return (
             <div>
-                <h2 style={{ fontWeight: 'bold', fontSize: '24px' }}>学生管理</h2>
-                <div>
-                    <Input placeholder="输入学生姓名" style={{ width: 200 }} />
-                    <Select
-                        showSearch
-                        style={{ width: 200, margin: '20px' }}
-                        placeholder="请选择教室号"
-                        optionFilterProp="children"
-                        onChange={this.onChange}
-                        onFocus={this.onFocus}
-                        onBlur={this.onBlur}
-                        onSearch={this.onSearch}
-                        filterOption={(input, option: any) =>
-                            option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-                        }
-                    >
-                        {
-                            this.state.roomData.map((item: any, index: number) => {
-                                return <Option value={item.room_text} key={index}>{item.room_text}</Option>
-                            })
-                        }
-                    </Select>
-                    <Select
-                        showSearch
-                        style={{ width: 200 }}
-                        placeholder="班级名"
-                        optionFilterProp="children"
-                        onChange={this.onChange}
-                        onFocus={this.onFocus}
-                        onBlur={this.onBlur}
-                        onSearch={this.onSearch}
-                        filterOption={(input, option: any) =>
-                            option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-                        }
-                    >
-                        {
-                            this.state.gradeData.map((item: any, index: number) => {
-                                return <Option value={item.grade_name} key={index}>{item.grade_name}</Option>
-                            })
-                        }
-                    </Select>
-                    <Button type="primary" style={{ margin: '20px' }}>搜索</Button>
-                    <Button type="primary">重置</Button>
-                </div>
-                <Table columns={this.state.columns} dataSource={this.state.data} rowKey='student_id' />
+                <Form {...this.state.layout} ref={this.formRef} name="control-hooks" onFinish={this.onFinish} style={{display:'flex',alignItems:'center'}}>
+                    <Form.Item name="student_name" label="">
+                        <Input placeholder="输入学生姓名" style={{ width: 200,marginLeft:'20px'}}/>
+                    </Form.Item>
+                    {
+                        this.state.arr.map((item:any,ind:number)=>{
+                            return <Form.Item name={item.name} label="" key={ind+'select'}>
+                            <Select
+                                showSearch
+                                style={{ width: 200, margin: '20px' }}
+                                placeholder={item.placeholder}
+                                optionFilterProp="children"
+                            >
+                                {
+                                    this.state[item.list].map((val: any, index: number) => {
+                                        return <Option value={val[item.name]} key={index+'selectOption'}>{val[item.name]}</Option>
+                                    })
+                                }
+                            </Select>
+                        </Form.Item>
+                        })
+                    }
+
+                    <Form.Item {...this.state.tailLayout} style={{width: 240,display:'flex',alignItems:'center'}}>
+                        <Button type="primary" htmlType="submit" >
+                         搜索
+                        </Button>
+                        <Button type="primary" htmlType="button" onClick={()=>{this.onReset()}} style={{ marginLeft: '20px' }}>
+                         重置
+                        </Button>
+                    </Form.Item>
+                </Form>
+                <Table columns={this.state.columns} dataSource={this.state.data} rowKey='student_id' style={{display:this.state.isFlag?'block':'none'}}/>
+                <Table columns={this.state.columns} dataSource={this.state.searchList} rowKey='student_id' style={{display:this.state.isShow?'block':'none'}}/>
             </div>
         )
     }
