@@ -1,29 +1,27 @@
-import request from "@/utils/request"
 import React, { Component } from 'react'
-import ContentBox from '@/components/ContentBox'
 import { Button, Table, Space,message } from "antd"
 import { inject, observer } from "mobx-react"
 import Dialogs from "@/components/Dialogs";
+import Axios from "@/utils/request";
 const { Column } = Table;
 
 interface IProps {
     home: any
 }
-
 interface IState {
     flag: boolean;
     id: string;
 }
 
 @inject('home') @observer
-class QuestionsType extends Component<IProps, IState> {
+class Classify extends Component<IProps, IState> {
     state = {
         flag: false,
         id: ''
     }
     async changeId(val:any) {
         console.log(val.questions_type_id)
-        const result = await request.post('/exam/delQuestionsType',{
+        const result = await Axios.post('/exam/delQuestionsType',{
             id:val.questions_type_id
         })
         if (result.data.code === 1) {
@@ -58,8 +56,4 @@ class QuestionsType extends Component<IProps, IState> {
         )
     }
 }
-
-export default ContentBox({
-    title: '试题分类',
-    Module: QuestionsType
-})
+export default Classify;

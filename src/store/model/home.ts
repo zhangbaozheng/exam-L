@@ -8,6 +8,7 @@ class Home {
   @observable title = 'home'
   @observable classifyList = []
   @observable id = 1
+  @observable titles = ""
 
 
   @action async getClassifyList(){
@@ -17,6 +18,9 @@ class Home {
     if(result.code === 1){
       this.classifyList = result.data
     }
+  }
+  @action setTitle(title:string){
+     this.titles = title
   }
 }
 const Store = new Home()

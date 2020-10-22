@@ -1,0 +1,355 @@
+* {
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  list-style: none;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.site-layout-background {
+  flex: 1;
+  overflow: auto;
+}
+
+.wyy-logo {
+  width: 120px;
+  height: 30px;
+}
+
+.hu-addtest {
+  width: 100%;
+}
+
+.hu-addtest .test-stem .ant-input {
+  height: 50px;
+  width: 55%;
+  font-size: 18px;
+}
+
+.hu-addtest .test-subject {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.hu-addtest .test-subject .subject-title {
+  width: 100%;
+}
+
+.hu-addtest .test-subject .test-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+}
+
+.hu-addtest .test-subject .test-content .test-content-top {
+  height: 60px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #aaa;
+}
+
+.hu-addtest .test-subject .test-content .test-content-top ul:nth-child(1) {
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+}
+
+.hu-addtest .test-subject .test-content .test-content-top ul:nth-child(1) li {
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  margin-left: 10px;
+}
+
+.hu-addtest .test-subject .test-content .test-content-top ul:nth-child(2) {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+}
+
+.hu-addtest .test-subject .test-content .test-content-top ul:nth-child(2) li {
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  margin-left: 10px;
+}
+
+.hu-addtest .test-subject .test-content .test-content-bottom {
+  width: 100%;
+  height: 100%;
+  border: 1px solid #aaa;
+}
+
+.hu-login {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: #0505ac;
+}
+
+.hu-login .login-box {
+  width: 500px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background: #fff;
+}
+
+.hu-login .login-box #normal_login {
+  width: 80%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.hu-login .login-box #normal_login .ant-form-item {
+  width: 100%;
+}
+
+.hu-login .login-box #normal_login .ant-form-item:nth-child(1) {
+  padding: 30px 0 0 0;
+}
+
+.hu-login .login-box #normal_login .ant-form-item:nth-child(3) .ant-form-item-control .ant-form-item-control-input-content,
+.hu-login .login-box #normal_login .ant-form-item:nth-child(3) .ant-form-item-control-input .ant-form-item-control-input-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hu-login .login-box #normal_login .ant-form-item:nth-child(4) .ant-form-item-control .login-form-button,
+.hu-login .login-box #normal_login .ant-form-item:nth-child(4) .ant-form-item-control-input .login-form-button,
+.hu-login .login-box #normal_login .ant-form-item:nth-child(4) .ant-form-item-control-input-content .login-form-button {
+  width: 100%;
+  height: 46px;
+  font-size: 16px;
+}
+
+.hu-classify {
+  width: 100%;
+}
+
+.hu-classify .hu-add {
+  width: 100%;
+  height: 80px;
+}
+
+.hu-classify .hu-add .ant-btn-primary {
+  width: 150px;
+  height: 50px;
+  font-size: 20px;
+}
+
+.hu-classify .hu-main {
+  width: 100%;
+}
+
+.hu-classify .hu-main .ant-table-wrapper .ant-table-content,
+.hu-classify .hu-main .ant-spin-nested-loading .ant-table-content,
+.hu-classify .hu-main .ant-spin-container .ant-table-content,
+.hu-classify .hu-main .ant-table .ant-table-content,
+.hu-classify .hu-main .ant-table-container .ant-table-content {
+  width: 100%;
+}
+
+.hu-classify .hu-main .ant-table-wrapper .ant-table-content table,
+.hu-classify .hu-main .ant-spin-nested-loading .ant-table-content table,
+.hu-classify .hu-main .ant-spin-container .ant-table-content table,
+.hu-classify .hu-main .ant-table .ant-table-content table,
+.hu-classify .hu-main .ant-table-container .ant-table-content table {
+  width: 100%;
+}
+
+.hu-classify .hu-main .ant-table-wrapper .ant-table-content table .ant-table-thead,
+.hu-classify .hu-main .ant-spin-nested-loading .ant-table-content table .ant-table-thead,
+.hu-classify .hu-main .ant-spin-container .ant-table-content table .ant-table-thead,
+.hu-classify .hu-main .ant-table .ant-table-content table .ant-table-thead,
+.hu-classify .hu-main .ant-table-container .ant-table-content table .ant-table-thead {
+  width: 100%;
+}
+
+.hu-classify .hu-main .ant-table-wrapper .ant-table-content table .ant-table-thead > tr > th,
+.hu-classify .hu-main .ant-spin-nested-loading .ant-table-content table .ant-table-thead > tr > th,
+.hu-classify .hu-main .ant-spin-container .ant-table-content table .ant-table-thead > tr > th,
+.hu-classify .hu-main .ant-table .ant-table-content table .ant-table-thead > tr > th,
+.hu-classify .hu-main .ant-table-container .ant-table-content table .ant-table-thead > tr > th {
+  text-align: center;
+}
+
+.hu-classify .hu-main .ant-table-wrapper .ant-table-content table .ant-table-tbody > .ant-table-row > .ant-table-cell,
+.hu-classify .hu-main .ant-spin-nested-loading .ant-table-content table .ant-table-tbody > .ant-table-row > .ant-table-cell,
+.hu-classify .hu-main .ant-spin-container .ant-table-content table .ant-table-tbody > .ant-table-row > .ant-table-cell,
+.hu-classify .hu-main .ant-table .ant-table-content table .ant-table-tbody > .ant-table-row > .ant-table-cell,
+.hu-classify .hu-main .ant-table-container .ant-table-content table .ant-table-tbody > .ant-table-row > .ant-table-cell {
+  text-align: center;
+}
+
+.ant-modal .ant-modal-body {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.ant-modal .ant-modal-body > p {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.ant-modal .ant-modal-body #inp-dialogs {
+  width: 80%;
+  height: 46px;
+  border: 0;
+  border-bottom: 1px solid #aaa;
+  font-size: 20px;
+}
+
+.hu-examine {
+  width: 100%;
+}
+
+.hu-examine .examine-title {
+  width: 100%;
+  height: 200px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  box-shadow: 0px 0px 5px 3px #aaa;
+  border-radius: 10px;
+}
+
+.hu-examine .examine-title .title-top {
+  height: 80px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.hu-examine .examine-title .title-top .left {
+  width: 10%;
+  font-size: 20px;
+  text-align: center;
+}
+
+.hu-examine .examine-title .title-top .right {
+  width: 90%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.hu-examine .examine-title .title-top .right > span {
+  padding: 5px;
+  cursor: pointer;
+}
+
+.hu-examine .examine-title .title-top .right .actives {
+  background: blue;
+  color: #fff;
+}
+
+.hu-examine .examine-title .title-bottom {
+  height: 80px;
+  display: flex;
+  align-items: center;
+}
+
+.hu-examine .examine-title .title-bottom > div {
+  margin-left: 50px;
+}
+
+.hu-examine .examine-main {
+  width: 100%;
+  margin-top: 50px;
+  box-shadow: 0px 0px 5px 3px #aaa;
+  border-radius: 10px;
+}
+
+.hu-examine .examine-main ul {
+  width: 100%;
+  padding: 20px;
+}
+
+.hu-examine .examine-main ul :hover {
+  background: #eff6f8;
+}
+
+.hu-examine .examine-main ul > li {
+  border-bottom: 1px solid #eee;
+  font-size: 18px;
+  padding: 20px 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.hu-examine .examine-main ul > li .left {
+  width: 90%;
+}
+
+.hu-examine .examine-main ul > li .left .hu-author {
+  color: blue;
+}
+
+.hu-examine .examine-main ul > li .right {
+  width: 10%;
+}
+
+.hu-detail {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  padding: 20px;
+}
+
+.hu-detail .detail-left {
+  height: 100%;
+  width: 60%;
+  background: #fff;
+  box-shadow: 0px 0px 3px 3px #aaa;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.hu-detail .detail-right {
+  height: 100%;
+  width: 30%;
+  background: #fff;
+  box-shadow: 0px 0px 3px 3px #aaa;
+  border-radius: 10px;
+  padding: 20px;
+}

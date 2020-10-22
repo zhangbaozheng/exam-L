@@ -1,6 +1,5 @@
 import React from 'react'
-import { Switch,Route,Redirect } from 'react-router-dom'
-import { _userInfo } from '@/api/index'
+import {Switch,Route,Redirect} from 'react-router-dom'
 interface IRoute {
     path?: string
     component?: any
@@ -8,26 +7,12 @@ interface IRoute {
     isLogin?: boolean
     children?: IRoute[]
     name: string 
+    flag?:boolean
 }
 
 interface IProps {
     routes: IRoute[]
 }
-
-async function userInfo() {
-    try {
-        let result = await _userInfo();
-        if(result.data.code === 1) {
-            return true
-        }else {
-            return false
-        }
-    } catch (e) {
-        // console.log(e);
-    }
-    
-}
-
 
 export default function RouterView(props:IProps) {
     let coms = props.routes.filter(item=>item.component)
@@ -37,10 +22,12 @@ export default function RouterView(props:IProps) {
         {
             coms.map((item)=>{
                 return <Route path={item.path} key={item.path} render={(props)=>{
-                        if(userInfo()) {
-                            return <item.component {...props} routes={item.children} key={item.path}></item.component>
-                        } else {
+                    if(item.isLogin) {
+                        if(!sessionStorage.getItem('token')) {
                             return <Redirect to='/login'/>
+                        }
+                    }else {
+                        return <item.component {...props} routes={item.children}></item.component>
                     }
                 }}></Route>
             })
