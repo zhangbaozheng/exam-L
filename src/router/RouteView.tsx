@@ -15,13 +15,17 @@ interface IProps {
 }
 
 async function userInfo() {
-    let result = await _userInfo();
-    console.log(result);
-    if(result.data.code === 1) {
-        return true
-    }else {
-        return false
+    try {
+        let result = await _userInfo();
+        if(result.data.code === 1) {
+            return true
+        }else {
+            return false
+        }
+    } catch (e) {
+        // console.log(e);
     }
+    
 }
 
 

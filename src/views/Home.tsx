@@ -1,13 +1,13 @@
 
 
-import Loading from '@/components/Loading'
-import { Layout, Menu, Avatar, Dropdown } from 'antd';
 import NavList from '@/router/navList'
-import { getCookie,removeCookie } from '@/utils'
+import Loading from '@/components/Loading'
 import { NavLink } from 'react-router-dom';
 import RouterView from '@/router/RouteView'
 import { components } from '@/router/index'
+import { getCookie,removeCookie } from '@/utils'
 import React, { Component,Suspense } from 'react'
+import { Layout, Menu, Avatar, Dropdown } from 'antd';
 import { NotificationOutlined } from '@ant-design/icons';
 import { UserOutlined, DownOutlined } from '@ant-design/icons';
 
