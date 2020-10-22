@@ -8,7 +8,7 @@ class Home {
   @observable title = 'home'
   @observable classifyList = []
   @observable id = 1
-
+  @observable titles = ""
 
   @action async getClassifyList(){
     let result = await axios.get('/exam/getQuestionsType').then(res=>{
@@ -18,6 +18,9 @@ class Home {
       this.classifyList = result.data
     }
   }
+  @action setTitle(title:string){
+    this.titles = title
+ }
 }
 const Store = new Home()
 export default Store;
