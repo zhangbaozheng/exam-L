@@ -1,3 +1,11 @@
+/*
+ * @Descripttion: 
+ * @version: 1.0
+ * @Author: 赵舒婷
+ * @Date: 2020-10-23 09:55:58
+ * @LastEditors: 赵舒婷
+ * @LastEditTime: 2020-10-23 14:22:31
+ */
 
 let bgImg ='https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1603371967325&di=b40c105faf1f808d343499f47cdfe1b3&imgtype=0&src=http%3A%2F%2Fattach.bbs.miui.com%2Fforum%2F201107%2F18%2F1128552dfogdk5efkhzmoh.jpg' ;
 let lines = [
@@ -13,9 +21,6 @@ let lines = [
             [296, 304]
         ]
     },
-
-
-
     {
         coords: [
              [697, 751],
@@ -38,12 +43,12 @@ let lines = [
 export default {
     backgroundColor: '#000',
     grid:{
-        top: 10,
-        bottom: 10,
-        left: 10,
-        right: 10,
+        top: 0,
+        bottom: 0,
+        left: 0,
+        right: 0,
         width: 1460,
-        height: 1194,
+        height: 1194
     },
     xAxis: {
         show: false,
@@ -94,7 +99,7 @@ export default {
     graphic: [
         {
             type: 'image',
-            position: [10, 10],
+            position: [0, 0],
             style: {
                 image: bgImg,
             }

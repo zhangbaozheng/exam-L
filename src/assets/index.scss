@@ -61,24 +61,48 @@ body,
 .login{
     width: 100%;
     height: 100%;
-    position: relative;
     background: #000;
 }
-#normal_login{
-    width: 27%;
-    height: 40%;
-    background: #adabab61;
+#normal_login{  
+    background: url('https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3376266861,660459357&fm=26&gp=0.jpg');
     padding: 20px;
     position: absolute;
     left: 50%;
     top: 50%;
-    margin-left:-15%;
-    margin-top: -15%;
-    z-index: 9999;
+    margin-top: -138.5px;
+    z-index: 99;
     border-radius: 10px;
+    .zst-rem{
+        color: #fff;
+    }
+    .zst-alert{
+        z-index: 999;
+    }
 }
+
+@media only screen and (max-width: 600px) {
+    #normal_login{
+        width: 410px;
+        margin-left:-205px;
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    #normal_login{
+        width: 375px;
+        margin-left:-187.5px;
+    }
+}
+
+@media only screen and (min-height: 500px){
+    #normal_login{
+        height: 277px;
+        margin-top: -138.5px;
+    }
+}
+
 .login-form-forgot,.ant-checkbox-inner,#ant-checkbox-input,.ant-checkbox-checked{
-    background: #40a9ff63;
+    background: #2f4090;
     color: #fff;
     border: 1px solid #fff;
     border-radius: 3px;
@@ -89,7 +113,7 @@ body,
 }
 .login-form-button{
     width: 100%;
-    background:#40a9ff63;
+    background:#2f4090;
     border: 1px solid #fff;
     border-radius: 3px;
 }
@@ -153,11 +177,11 @@ body,
     display: flex;
     align-items: center;
     justify-content: space-around;
+    .ant-btn {
+        margin:10px;
+     }
 }
 
-.ant-btn {
-   margin:10px;
-}
 //閱卷詳情頁
 .zst-classdetail{
     width: 100%;
