@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { FormInstance } from "antd/lib/form";
 import { Form, Button, Select, message } from "antd";
-import { _userIdentity, _userAuthority, _userSetApiView } from "@/api/userAdd";
+import { _userIdentity, _view_authority, _userSetApiView } from "@/api/userAdd";
 
 const { Option } = Select;
 interface Props {}
@@ -56,12 +56,12 @@ class ApiSetUser extends Component<Props, State> {
             </Select>
           </Form.Item>
           {/**选择api接口权限*/}
-          <Form.Item name="api_authority_id">
+          <Form.Item name="view_authority_id">
             <Select placeholder="请选择api接口权限" allowClear>
               {this.state.AuthData.map((item: any, index: number) => {
                 return (
-                  <Option value={item.api_authority_id} key={index}>
-                    {item.api_authority_text}
+                  <Option value={item.view_authority_id} key={index}>
+                    {item.view_authority_text}
                   </Option>
                 );
               })}
@@ -83,17 +83,18 @@ class ApiSetUser extends Component<Props, State> {
     this.userIdentity();
     this.userAuthority();
   }
-  //   message.success(result.data.msg);
   //获取身份数据
   async userIdentity() {
     let result = await _userIdentity();
+
     this.setState({
       viewData: result.data.data,
     });
   }
   //获取所有考试数据
   async userAuthority() {
-    let result = await _userAuthority();
+    let result = await _view_authority();
+    console.log(result);
     this.setState({
       AuthData: result.data.data,
     });

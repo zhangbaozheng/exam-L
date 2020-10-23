@@ -98,7 +98,7 @@ class MainChart extends Component<Props, State> {
   }
 }
 export default ContentBox({
-  title: '视图文件',
+  title: '视图展示',
   Module: MainChart
 })
 

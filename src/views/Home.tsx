@@ -160,6 +160,12 @@ export default class Home extends Component<Props, State> {
             navItem = (item.children as IRoute[]).filter((val) => {
                 return arr.indexOf(val.path) > -1
             })
+            if(item.name === '用户管理'){
+                navItem.push({   
+                    path: "/index/chart",
+                    name: '分数查看'
+                })
+            }
             if((navItem as any[]).length) {
                 navArr.push({
                     name: item.name,

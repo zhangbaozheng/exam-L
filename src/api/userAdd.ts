@@ -1,7 +1,7 @@
 /*
  * @Author: 大郑
  * @Date: 2020-10-20 19:38:32
- * @LastEditTime: 2020-10-22 18:27:21
+ * @LastEditTime: 2020-10-23 10:57:22
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \exam-L\src\api\userAdd.ts
@@ -78,6 +78,11 @@ export function _userAuthority() {
   let url = "/user/api_authority";
   return request.get(url);
 }
+export function _view_authority() {
+  let url = "/user/view_authority";
+  return request.get(url);
+}
+
 //设置身份视图权限
 export function _userSetApiView(value: object) {
   let url = "/user/setIdentityView";

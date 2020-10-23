@@ -3,8 +3,8 @@
  * @version: 1.0
  * @Author: 赵舒婷
  * @Date: 2020-10-21 08:51:37
- * @LastEditors: 赵舒婷
- * @LastEditTime: 2020-10-21 09:15:17
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2020-10-23 11:05:14
  */
 
 interface IRoute {
@@ -41,7 +41,11 @@ const NavList: IRoute[] = [
             {   
                 path: '/index/showUser',
                 name: '用户展示'
-            }
+            }, 
+            {
+                path: '/index/chart',
+                name: "数据展示",
+            },
         ]
     },
     {
