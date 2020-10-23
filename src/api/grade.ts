@@ -2,8 +2,8 @@
  * @Description:
  * @Author: 王寒烟
  * @Date: 2020-10-19 19:20:22
- * @LastEditTime: 2020-10-22 18:55:07
- * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2020-10-23 13:53:32
+ * @LastEditors: 王寒烟
  * @FilePath: \exam-L\src\api\grade.ts
  */
 import request from "@/utils/request";
@@ -53,8 +53,8 @@ export function _getRoomList() {
 //删除教室
 export function _gradeRoomDel(id: string) {
   return request.delete("/manger/room/delete", {
-    data: {
-      eoom_id: id,
+    params: {
+      room_id: id,
     },
   });
 }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import ContentBox from '@/components/ContentBox'
 import { _getGradeList, _gradeListDel, _gradeListAdd, _gradeListEdit, _getRoomList, _getSubjectList } from '@/api/grade'
-import { Table, Space, message, Button, Modal, Form, Input, Select } from 'antd';
+import { Table, Space, message, Button, Modal, Form, Input, Select, Popconfirm } from 'antd';
 const { Option } = Select;
 
 interface Props {
@@ -12,7 +12,6 @@ interface State {
   data: any,
   visible: boolean,
   title: string,
-  num: number,
   red: any,
   layout: any,
   tailLayout: any,
@@ -30,12 +29,12 @@ class Grade extends Component<Props, State> {
         render: (text: React.ReactNode) => <span>{text}</span>,
       },
       {
-        title: '課程名',
+        title: '课程名',
         dataIndex: 'subject_text',
         key: 'subject_text',
       },
       {
-        title: '教室號',
+        title: '教室号',
         dataIndex: 'room_text',
         key: 'room_text',
       },
@@ -45,7 +44,9 @@ class Grade extends Component<Props, State> {
         render: (text: any, record: { name: React.ReactNode; }) => (
           <Space size="middle">
             <span onClick={() => { this.showModal(2, record) }}>修改</span>
-            <span onClick={() => { this.gradeListDel(record) }}>删除</span>
+            <Popconfirm title="Are you sure？" okText="Yes" cancelText="No" onConfirm={() => { this.gradeListDel(record) }}>
+               <span>删除</span>
+            </Popconfirm>
           </Space>
         ),
       },
@@ -53,7 +54,6 @@ class Grade extends Component<Props, State> {
     data: [],
     visible: false,//modal弹框
     title: '+添加班级',
-    // num:1,//添加和修改的标识
     red: '',//点击编辑时该商品的所有项
     layout: {
       labelCol: { span: 8 },
@@ -73,24 +73,23 @@ class Grade extends Component<Props, State> {
   //班级信息
   async getGradeList() {
     const res = await _getGradeList();
-    console.log(res.data.data)
     if (res.data.code) {
       this.setState({
         data: res.data.data
       })
     }
   }
+
   //删除班级
   async gradeListDel(record: any) {
-    // console.log(record)
-    const res = await _gradeListDel(record.grade_id);
-    // console.log(res.data)
-    if (res.data.code) {
-      this.getGradeList()
-      message.info('删除成功');
-    } else {
-      message.info('删除失败');
-    }
+    try {
+      const res = await _gradeListDel(record.grade_id);
+      if (res.data.code) {
+        this.getGradeList()
+        return message.success('删除成功');
+      } 
+      message.error('删除失败');
+    } catch (error) {}
   }
 
   //点击添加班级或修改显示弹框
@@ -243,7 +242,7 @@ class Grade extends Component<Props, State> {
               </Select>
             </Form.Item>
 
-            <Form.Item {...this.state.tailLayout}>
+            <Form.Item {...this.state.tailLayout} style={{display:'flex',width:300}}>
               <Button type="primary" htmlType="submit" onClick={() => { this.cancel() }} style={{ marginRight: '10px' }}>
                 取消
               </Button>
