@@ -53,8 +53,13 @@ export function _getRoomList() {
 //删除教室
 export function _gradeRoomDel(id: string) {
   return request.delete("/manger/room/delete", {
+<<<<<<< HEAD
     params: {
       room_id: id,
+=======
+    data: {
+      eoom_id: id,
+>>>>>>> f0467581aeb307b18e5b1c516d3b7b8a79f116fc
     },
   });
 }
@@ -62,6 +67,8 @@ export function _gradeRoomDel(id: string) {
 //添加教室
 export function _gradeRoomAdd(value: any) {
   return request.post("/manger/room", value);
+<<<<<<< HEAD
+=======
 }
 
 
@@ -71,12 +78,25 @@ export function _gradeRoomAdd(value: any) {
 //获取课程信息
 export function _getSubjectList() {
   return request.get('/exam/subject')
+>>>>>>> f0467581aeb307b18e5b1c516d3b7b8a79f116fc
 }
 
 
 
 
 
+<<<<<<< HEAD
+//获取课程信息
+export function _getSubjectList() {
+  return request.get('/exam/subject')
+}
+
+
+
+
+
+=======
+>>>>>>> f0467581aeb307b18e5b1c516d3b7b8a79f116fc
 
 
 //学生管理

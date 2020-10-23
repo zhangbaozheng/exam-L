@@ -77,7 +77,7 @@ class ExamList extends Component<Props, State> {
                 key: 'grade_name',
                 fixed: 'left',
             },
-            { title: '创建人', dataIndex: '', key: '1' },
+            { title: '创建人', dataIndex: '', key: '1' ,render:()=><span>神秘人</span>},
             { title: '开始时间', dataIndex: 'start_time', key: 'start_time' },
             { title: '结束时间', dataIndex: 'end_time', key: 'end_time' },
             {
@@ -85,7 +85,7 @@ class ExamList extends Component<Props, State> {
                 key: '2',
                 fixed: 'right',
                 width: 100,
-                render: (text: any, record: any) => <span onClick={() => this.goDetail(record.exam_exam_id)}>详情</span>,
+                render: (text: any, record: any) => <span onClick={() => this.goDetail(record.exam_exam_id)} className='s-xq'>详情</span>,
             },
         ];
         return (

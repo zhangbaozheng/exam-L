@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Drawer, Tag, Form, Select, Modal, message } from 'antd'
+import { Button, Drawer, Tag, Form, Select, Modal, message, Popconfirm } from 'antd'
 import { NavLink } from 'react-router-dom'
 import ContentBox from '@/components/ContentBox'
 import { _addTest, _getTestSubject, _getTestType, _getQuesType, _getQues, _getQuesCon } from '@/api/exam'
@@ -201,6 +201,9 @@ class ExamEdit extends Component<Props, State> {
         })
         message.info('删除成功')
     }
+    cancel(e:any) {
+        message.error('取消删除');
+      }
     render() {
         const { sub, type, ques, questype } = this.state;
         return (
@@ -297,11 +300,20 @@ class ExamEdit extends Component<Props, State> {
                 <div className="create-box">
                     <Button id='btn_one' onClick={this.showDrawer}> + 添加试题</Button>
                     <h2>{this.state.tit}</h2>
-                    <p>考试时间：1小时30分钟 监考人：刘于 开始考试时间：{this.state.time} 阅卷人：刘于</p>
+                    <p>考试时间：1小时30分钟    监考人：刘于    开始考试时间：{this.state.time}    阅卷人：刘于</p>
                     {
                         this.state.itemdata.map((item: any, index: number) => {
                             return <div key={index} className='s-create-item'>
-                                <span onClick={() => this.Remove(index)}>删除</span>
+                                {/* <span onClick={() => this.Remove(index)}>删除</span> */}
+                                <Popconfirm
+                                    title="您确定要删除吗?"
+                                    onConfirm={() => this.Remove(index)}
+                                    onCancel={this.cancel}
+                                    okText="是的"
+                                    cancelText="取消"
+                                >
+                                    <span>删除</span>
+                                </Popconfirm>,
                                 <b>  {item.title}</b>
                                 <p className='s-answer'> {item.questions_stem}</p>
                             </div>
@@ -315,6 +327,8 @@ class ExamEdit extends Component<Props, State> {
                     visible={this.state.visible}
                     onOk={this.handleOk}
                     onCancel={this.handleCancel}
+                    okText="确定"
+                    cancelText="取消"
                 >
                     {
                         this.state.detailitem.map((item: any, index: number) => {
