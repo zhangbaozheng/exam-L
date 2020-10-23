@@ -1,5 +1,5 @@
 //@ts-nocheck
-import echarts from "echarts";
+import eckhart from "echarts";
 import { Select } from "antd";
 import _ from "lodash";
 import ContentBox from '@/components/ContentBox'
@@ -63,7 +63,7 @@ class MainChart extends Component<Props, State> {
     );
   }
   async componentDidMount() {
-    let myChart = echarts.init(this.refs.mian);
+    let myChart = eckhart.init(this.refs.mian);
     myChart.setOption(this.state.option);
     this.getGradeList();
     // this.onDeselect();
@@ -78,7 +78,7 @@ class MainChart extends Component<Props, State> {
   }
   //根据班级来获取学生分数
   async onDeselect(values) {
-    let myChart = echarts.init(this.refs.mian);
+    let myChart = eckhart.init(this.refs.mian);
     let obj = {
       grade_id: values,
     };

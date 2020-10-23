@@ -37,11 +37,11 @@ export default function RouterView(props:IProps) {
         {
             coms.map((item)=>{
                 return <Route path={item.path} key={item.path} render={(props)=>{
-                        if(userInfo()) {
+                        if(userInfo() || item.path !== '/login') {
                             return <item.component {...props} routes={item.children} key={item.path}></item.component>
                         } else {
                             return <Redirect to='/login'/>
-                    }
+                        }
                 }}></Route>
             })
         }

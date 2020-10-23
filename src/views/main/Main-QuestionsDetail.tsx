@@ -29,8 +29,6 @@ class QuestionsDetail extends Component<IProps, IState> {
     render() {
         const { list } = this.state
         const items: any = list.filter((item: any) => item.questions_id === this.props.match.params.id)
-        // const leng = items && items.questions_stem.split(".")
-        // console.log(leng)
         return (
             <div className="hu-detail">
                 <div className="detail-left">
@@ -51,10 +49,10 @@ class QuestionsDetail extends Component<IProps, IState> {
                 <div className="detail-right">
                     {
                         items && items.map((item: any) => {
-                            return <div key={item.questions_id}>
-                                <div><h4>答案信息</h4></div>
-                                <p>{item.questions_answer}</p>
-                            </div>
+                            return  <div key={item.questions_id}>
+                                        <div><h4>答案信息</h4></div>
+                                        <p>{item.questions_answer}</p>
+                                    </div>
                         })
                     }
                 </div>
