@@ -1,34 +1,65 @@
 import request from "@/utils/request"
 import React, { Component } from 'react'
+import Dialogs from "@/components/Dialogs";
+import { inject, observer } from "mobx-react"
 import ContentBox from '@/components/ContentBox'
+import { Button, Table, Space,message } from "antd"
 
-interface Props {
+const { Column } = Table;
 
+interface IProps {
+    home: any
 }
-interface State {
 
+interface IState {
+    flag: boolean;
+    id: string;
 }
 
-class QuestionsType extends Component<Props, State> {
+@inject('home') @observer
+class QuestionsType extends Component<IProps, IState> {
     state = {
-        list: []
+        flag: false,
+        id: ''
     }
-    componentDidMount() {
-        request.get('/exam/insertQuestionsType').then(res => {
-
-            console.log(res)
+    async changeId(val:any) {
+        const result = await request.post('/exam/delQuestionsType',{
+            id:val.questions_type_id
         })
+        if (result.data.code === 1) {
+            this.props.home.getClassifyList()
+            message.success(result.data.msg);
+        } else {
+            message.error(result.data.msg);
+        }
     }
     render() {
+        const { classifyList } = this.props.home
         return (
-            <div>
-                试题分类
+            <div className="hu-classify">
+                <div className="hu-add">
+                    <Dialogs />
+                </div>
+                <div className="hu-main">
+                    <Table dataSource={classifyList}>
+                        <Column title="类型ID" dataIndex="questions_type_id" />
+                        <Column title="类型名称" dataIndex="questions_type_text" />
+                        <Column
+                            title="操作"
+                            render={(text, record) => (
+                                <Space size="middle">
+                                    <Button type="primary" danger onClick={() => this.changeId(record)}>删除</Button>
+                                </Space>
+                            )}
+                        />
+                    </Table>
+                </div>
             </div>
         )
     }
 }
 
 export default ContentBox({
-    title: '添加试题',
+    title: '试题分类',
     Module: QuestionsType
 })
