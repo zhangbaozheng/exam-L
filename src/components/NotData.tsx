@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Result, Button } from 'antd';
+import { Result } from 'antd';
 export default class NotData extends Component {
     render() {
         return (

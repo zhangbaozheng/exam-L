@@ -74,7 +74,7 @@ class WatchQuestions extends Component<IProps & RouteComponentProps, IState> {
         this.props.examine.getText(exam_id,subject_id,questions_type_id)
     }
     render() {
-        const { examineList, subjectList, subjectType, questionsType, getText } = this.props.examine
+        const { examineList, subjectList, subjectType, questionsType } = this.props.examine
         const { flag, curIndex } = this.state
         return (
             <div className="hu-examine">
@@ -139,7 +139,7 @@ class WatchQuestions extends Component<IProps & RouteComponentProps, IState> {
                                         </p>
                                     </div>
                                     <div className="right">
-                                        <a href="#">编辑</a>
+                                        <span >编辑</span>
                                     </div>
 
                                 </li>

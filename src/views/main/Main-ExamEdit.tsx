@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Button, Drawer, Tag, Form, Select, Modal, message, Popconfirm } from 'antd'
 import { NavLink } from 'react-router-dom'
 import ContentBox from '@/components/ContentBox'
-import { _addTest, _getTestSubject, _getTestType, _getQuesType, _getQues, _getQuesCon } from '@/api/exam'
+import { _getTestSubject, _getTestType, _getQuesType, _getQues, _getQuesCon } from '@/api/exam'
 const { Option } = Select;
 interface Props {
     history: any
@@ -227,11 +227,11 @@ class ExamEdit extends Component<Props, State> {
                         >
                             <div className='s-sub'>
                                 <span style={{ marginRight: 8 }}>课程类型：</span>
-                                <span onClick={() => this.all()} className={this.state.current == -1 ? 'active' : ''}>All</span>
+                                <span onClick={() => this.all()} className={this.state.current === -1 ? 'active' : ''}>All</span>
                                 {sub.map((item: any, index: number) => (
                                     <span key={item.subject_id}
                                         onClick={() => this.change_span(index, item.subject_id)}
-                                        className={index == this.state.current ? 'active' : ''}
+                                        className={index === this.state.current ? 'active' : ''}
                                     >
                                         {item.subject_text}
                                     </span>

@@ -2,20 +2,10 @@ import ContentBox from '@/components/ContentBox'
 import React, { Component } from 'react'
 import { Form, Input, Button, Select, Modal, notification } from 'antd';
 import { SmileOutlined } from '@ant-design/icons';
-import {
-    LeftOutlined,
-    RightOutlined,
-    SlackSquareOutlined,
-    DisconnectOutlined,
-    FormOutlined,
-    CreditCardOutlined,
-    FullscreenOutlined,
-    EyeTwoTone,
-} from '@ant-design/icons';
+
 import { inject, observer } from "mobx-react"
 import Axios from '@/utils/request';
 import E from 'wangeditor'
-const { TextArea } = Input;
 const { Option } = Select;
 let editor :E|null = null;
 let editor1 :E|null = null;

@@ -12,9 +12,6 @@ interface ILogin{
 
 }
 class Login extends Component<ILogin> {
-    constructor(props:ILogin){
-        super(props)
-    }
     eStyle={
         width:'100%',
         height:'100%',

@@ -6,9 +6,6 @@ interface IProps{
     eStyle:any
 }
 class Echarts extends Component<IProps> {
-    constructor(props:any){
-        super(props)
-    }
     myRef=createRef<HTMLDivElement>(); //创建ref标签
     render() {
         return (
