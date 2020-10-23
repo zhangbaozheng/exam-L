@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import ContentBox from '@/components/ContentBox'
 import { _getStudentList, _gradeStudentDel, _getGradeList, _getRoomList } from '@/api/grade'
-import { Table, Space, message, Button, Input, Select,Form } from 'antd';
+import { Table, Space, message, Button, Input, Select, Form, Popconfirm } from 'antd';
 import { FormInstance } from 'antd/lib/form';
 const { Option } = Select;
 
@@ -14,10 +14,10 @@ interface State {
     data: any,
     gradeData: any,
     roomData: any,
-    searchList:any,
-    isFlag:boolean,
-    isShow:boolean,
-    
+    searchList: any,
+    isFlag: boolean,
+    isShow: boolean,
+
 }
 
 class Student extends Component<Props, State> {
@@ -54,7 +54,7 @@ class Student extends Component<Props, State> {
                 key: 'action',
                 render: (text: any, record: { name: React.ReactNode; }) => (
                     <Space size="middle">
-                        <span onClick={() => { this.gradeRoomDel(record) }}>删除</span>
+                        <Popconfirm title="Are you sure？" okText="Yes" cancelText="No" onConfirm={() => { this.confirm(record) }}> <span>删除</span></Popconfirm>
                     </Space>
                 ),
             },
@@ -62,30 +62,30 @@ class Student extends Component<Props, State> {
         data: [],
         roomData: [],
         gradeData: [],
-        searchList:[],//搜索结果列表
-        isFlag:true,//控制第一个table的显示隐藏
-        isShow:false,//控制第二个table的显示隐藏
-        layout : {
+        searchList: [],//搜索结果列表
+        isFlag: true,//控制第一个table的显示隐藏
+        isShow: false,//控制第二个table的显示隐藏
+        layout: {
             labelCol: { span: 8 },
             wrapperCol: { span: 16 },
         },
-        tailLayout : {
+        tailLayout: {
             wrapperCol: { offset: 8, span: 16 },
         },
-        arr:[//提取出两个select框中不同的项
-          {
-            name:'room_text',
-            placeholder:'教室号',
-            list:'roomData'
-          },
-          {
-            name:'grade_name',
-            placeholder:'班级名',
-            list:'gradeData'
-          }
+        arr: [//提取出两个select框中不同的项
+            {
+                name: 'room_text',
+                placeholder: '教室号',
+                list: 'roomData'
+            },
+            {
+                name: 'grade_name',
+                placeholder: '班级名',
+                list: 'gradeData'
+            }
         ],
     }
-
+ 
     componentDidMount() {
         this.getStudentList();
         this.getGradeList();
@@ -103,18 +103,16 @@ class Student extends Component<Props, State> {
     }
 
     //删除学生
-    async gradeRoomDel(record: any) {
-        // console.log(record.student_id)
-        const res = await _gradeStudentDel(record.student_id);
-        // console.log(res.data)
-        if (res.data.code) {
-            this.getStudentList()
-            message.info('删除成功');
-        } else {
-            message.info('删除失败');
-        }
+    async confirm(record: any) {  
+        try {
+            const res = await _gradeStudentDel(record.student_id);
+            if (res.data.code) {
+                this.getStudentList()
+                return message.success('删除成功');
+            }
+            message.error('删除失败');
+        } catch (error) {}
     }
-
 
     //班级下拉列表内容
     async getGradeList() {
@@ -138,73 +136,73 @@ class Student extends Component<Props, State> {
         }
     }
 
-  //点击搜索    
-  onFinish = (values:any) => {
-    // console.log(values);
-    let result = [];
-    result = this.state.data.filter((item:any)=>{
-        if(values.student_name!== undefined){
-            return item.student_name.includes(values.student_name)
-        }else if(values.room_text!== undefined){
-            return item.room_text.includes(values.room_text)
-        }else if(values.grade_name!== undefined){
-            return item.grade_name.includes(values.grade_name)
-        }
-        return values
-    })
-   
-    this.setState({
-        searchList:result,
-        isFlag:false,
-        isShow:true
-    })
-  };
+    //点击搜索    
+    onFinish = (values: any) => {
+        // console.log(values);
+        let result = [];
+        result = this.state.data.filter((item: any) => {
+            if (values.student_name !== undefined) {
+                return item.student_name.includes(values.student_name)
+            } else if (values.room_text !== undefined) {
+                return item.room_text.includes(values.room_text)
+            } else if (values.grade_name !== undefined) {
+                return item.grade_name.includes(values.grade_name)
+            }
+            return values
+        })
 
-  //点击重置
-  onReset = () => {
-    //   console.log(this.formRef)
-    this.formRef.current&&this.formRef.current.resetFields();
-  };
+        this.setState({
+            searchList: result,
+            isFlag: false,
+            isShow: true
+        })
+    };
 
- 
+    //点击重置
+    onReset = () => {
+        //   console.log(this.formRef)
+        this.formRef.current && this.formRef.current.resetFields();
+    };
+
+    
 
     render() {
         return (
             <div>
-                <Form {...this.state.layout} ref={this.formRef} name="control-hooks" onFinish={this.onFinish} style={{display:'flex',alignItems:'center'}}>
+                <Form {...this.state.layout} ref={this.formRef} name="control-hooks" onFinish={this.onFinish} style={{ display: 'flex', alignItems: 'center' }}>
                     <Form.Item name="student_name" label="">
-                        <Input placeholder="输入学生姓名" style={{ width: 200,marginLeft:'20px'}}/>
+                        <Input placeholder="输入学生姓名" style={{ width: 200, marginLeft: '20px' }} />
                     </Form.Item>
                     {
-                        this.state.arr.map((item:any,ind:number)=>{
-                            return <Form.Item name={item.name} label="" key={ind+'select'}>
-                            <Select
-                                showSearch
-                                style={{ width: 200, margin: '20px' }}
-                                placeholder={item.placeholder}
-                                optionFilterProp="children"
-                            >
-                                {
-                                    this.state[item.list].map((val: any, index: number) => {
-                                        return <Option value={val[item.name]} key={index+'selectOption'}>{val[item.name]}</Option>
-                                    })
-                                }
-                            </Select>
-                        </Form.Item>
+                        this.state.arr.map((item: any, ind: number) => {
+                            return <Form.Item name={item.name} label="" key={ind + 'select'}>
+                                <Select
+                                    showSearch
+                                    style={{ width: 200, margin: '20px' }}
+                                    placeholder={item.placeholder}
+                                    optionFilterProp="children"
+                                >
+                                    {
+                                        this.state[item.list].map((val: any, index: number) => {
+                                            return <Option value={val[item.name]} key={index + 'selectOption'}>{val[item.name]}</Option>
+                                        })
+                                    }
+                                </Select>
+                            </Form.Item>
                         })
                     }
 
-                    <Form.Item {...this.state.tailLayout} style={{width: 240,display:'flex',alignItems:'center'}}>
+                    <Form.Item {...this.state.tailLayout} style={{ width: 300, display: 'flex', alignItems: 'center' }}>
                         <Button type="primary" htmlType="submit" >
-                         搜索
+                            搜索
                         </Button>
-                        <Button type="primary" htmlType="button" onClick={()=>{this.onReset()}} style={{ marginLeft: '20px' }}>
-                         重置
+                        <Button type="primary" htmlType="button" onClick={() => { this.onReset() }} style={{ marginLeft: '20px' }}>
+                            重置
                         </Button>
                     </Form.Item>
                 </Form>
-                <Table columns={this.state.columns} dataSource={this.state.data} rowKey='student_id' style={{display:this.state.isFlag?'block':'none'}}/>
-                <Table columns={this.state.columns} dataSource={this.state.searchList} rowKey='student_id' style={{display:this.state.isShow?'block':'none'}}/>
+                <Table columns={this.state.columns} dataSource={this.state.data} rowKey='student_id' style={{ display: this.state.isFlag ? 'block' : 'none' }} />
+                <Table columns={this.state.columns} dataSource={this.state.searchList} rowKey='student_id' style={{ display: this.state.isShow ? 'block' : 'none' }} />
             </div>
         )
     }

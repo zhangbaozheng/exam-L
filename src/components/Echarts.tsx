@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React, { Component,createRef } from 'react';
 import echarts from 'echarts';
 interface IProps{
