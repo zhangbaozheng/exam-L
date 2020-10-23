@@ -43,6 +43,7 @@ class ApiSetUser extends Component<Props, State> {
           name="control-ref"
           onFinish={this.onFinish}
         >
+          {/**选择身份id*/}
           <Form.Item name="identity_id">
             <Select placeholder="请选择身份id" allowClear>
               {this.state.viewData.map((item: any, index: number) => {
