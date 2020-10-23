@@ -8,7 +8,7 @@ interface Props {
 const ContentBox = (props:Props):any => {
     return class ContentBox extends Component {
         render() {
-            return <div style={{width:"100%",height:"100%",padding: '20px',background:'#f0f2f5'}}>
+            return <div style={{width:"100%",height:"100%",padding: '20px',background:'#f0f2f5',overflowY:'auto'}}>
                     <h2 style={{ padding: '10px 0' }}>{props.title}</h2>
                     <div style={{ width:"100%",height:"100%",background:'#fff',borderRadius:'10px'}}>
                         <props.Module {...this.props}/>

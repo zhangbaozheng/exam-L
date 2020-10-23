@@ -1,17 +1,25 @@
 import React, { Component } from 'react'
 import ContentBox from '@/components/ContentBox'
-import { Row, Col, Empty, Slider, Popconfirm, message, Button } from 'antd';
 import { _getExam, _getAnswer, _correctExam } from '@/api/exam'
+import { Row, Col, Empty, Slider, Popconfirm, message, Button } from 'antd';
+
 
 interface IProps {
     history: any
 }
-class ExaminationPapers extends Component<IProps> {
-    state = {
-        score: 0,
-        examData: [],   //试卷列表
-        answerData: [], //答案列表
-        text: '你确定提交阅卷吗？'
+
+interface IState{
+    [key:string]:any
+}
+class ExaminationPapers extends Component<IProps,IState> {
+    constructor(props:IProps){
+        super(props)
+        this.state = {
+            score: 0,
+            examData: [],   //试卷列表
+            answerData: [], //答案列表
+            text: '你确定提交阅卷吗？'
+        }
     }
     render() {
         return (
@@ -48,7 +56,7 @@ class ExaminationPapers extends Component<IProps> {
         if (result.data.code === 1) { //批改成功
             message.info('批改成功', 1, () => {
                 this.props.history.push({
-                    pathname: '/index/paper/classmate',
+                    pathname: '/index/ExamPaperClassmate',
                     query: {
                         grade_id: this.props.history.location.state.grade_id,
                         grade_name: this.props.history.location.state.grade_name

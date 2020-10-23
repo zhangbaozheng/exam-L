@@ -28,6 +28,11 @@ export function _correctExam({exam_student_id,score}:any){ //批改分数
     let url = `/exam/student/${exam_student_id}`
     return request.put(url,{score})
 }
+
+export function _getTestDetail(id:string){
+    let url='/exam/exam'
+    return request.get(url,{params:{id}})
+}
 //试题列表
 
 export function _getTestList() {

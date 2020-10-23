@@ -23,7 +23,7 @@ class ExamDetail extends Component<Props, State> {
         let data = res.data.exam
         let newdata: any[] = []
         data.forEach((item: any) => {
-            if (item.exam_exam_id == exam_exam_id) {
+            if (item.exam_exam_id === exam_exam_id) {
                 newdata.push(item)
             }
         })
@@ -32,7 +32,7 @@ class ExamDetail extends Component<Props, State> {
         let ndata: any[] = []
         quesdata.forEach((item: any) => {
             newdata.forEach((val: any) => {
-                if (item.subject_id == val.subject_id) {
+                if (item.subject_id === val.subject_id) {
                     ndata.push(item)
                 }
             })
@@ -48,9 +48,9 @@ class ExamDetail extends Component<Props, State> {
                 {
                     this.state.data.map((item:any)=>{
                     return <p key={item.questions_id} className='s-item'>
-                        <p>{item.title}</p>
-                    <span>{item.questions_stem}</span>
-                    </p>
+                                <p>{item.title}</p>
+                                <span>{item.questions_stem}</span>
+                            </p>
                     })
                 }
             </div>

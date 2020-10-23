@@ -1,14 +1,27 @@
+import React, { Component } from 'react';
+import Echarts from '@/components/Echarts';
+import echartsOption from '@/utils/echartsOption';
 
-
-import React, { Component } from 'react'
+import {setCookie} from '@/utils/index';
+import { _login, _GetUserNew} from '@/api';
 import { Form, Input, Button, Checkbox,message } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
-import { _login, _GetUserNew} from '@/api'
-import {setCookie} from '@/utils/index'
+
 interface ILogin{
     history:any
+
 }
 class Login extends Component<ILogin> {
+    constructor(props:ILogin){
+        super(props)
+    }
+    eStyle={
+        width:'100%',
+        height:'100%',
+        position:'absolute',
+        left:0,
+        top:0
+    }
     //登录事件
     async onFinish(values: any){
         const result = await _login(values)
@@ -25,7 +38,6 @@ class Login extends Component<ILogin> {
         setCookie('userInfo',JSON.stringify(userInfo))
         const result = await _GetUserNew(userInfo.user_id)
         if(result.data.code === 1){
-            console.log(result);
             // 保存权限数组
             setCookie('permission',JSON.stringify(result.data.data))
             // 登录成功跳转到首页
@@ -38,7 +50,6 @@ class Login extends Component<ILogin> {
     render() {
         return (
             <div className="login">
-
                 <Form
                     name="normal_login"
                     className="login-form"
@@ -78,6 +89,7 @@ class Login extends Component<ILogin> {
 
                     </Form.Item>
                 </Form>
+                <Echarts option={echartsOption} eStyle={this.eStyle}></Echarts>
             </div>
 
 

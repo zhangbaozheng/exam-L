@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import ContentBox from '@/components/ContentBox'
 import { Button, Select, Table } from 'antd';
 import { SearchOutlined } from '@ant-design/icons'
-import { _getTestList, _getTestSubject, _getTestType } from '@/api/exam'
+import { _getTestList, _getTestSubject, _getTestType, _getTestDetail } from '@/api/exam'
 const { Option } = Select;
 
 function handleChange(value: string) {
@@ -43,9 +43,16 @@ class ExamList extends Component<Props, State> {
             })
         }
     }
-    
     async getTestSubject() {
         const res = await _getTestSubject();
+        if (res.data.code) {
+            this.setState({
+                sub: res.data.data
+            })
+        }
+    }
+    async getTestDetail(id: string) {
+        const res = await _getTestDetail(id);
         if (res.data.code) {
             this.setState({
                 sub: res.data.data
@@ -70,7 +77,7 @@ class ExamList extends Component<Props, State> {
                 key: 'grade_name',
                 fixed: 'left',
             },
-            { title: '创建人', dataIndex: '', key: '1' },
+            { title: '创建人', dataIndex: '', key: '1' ,render:()=><span>神秘人</span>},
             { title: '开始时间', dataIndex: 'start_time', key: 'start_time' },
             { title: '结束时间', dataIndex: 'end_time', key: 'end_time' },
             {
@@ -78,7 +85,7 @@ class ExamList extends Component<Props, State> {
                 key: '2',
                 fixed: 'right',
                 width: 100,
-                render: (text: any, record: any) => <a onClick={() => this.goDetail(record.exam_exam_id)}>详情</a>,
+                render: (text: any, record: any) => <span onClick={() => this.goDetail(record.exam_exam_id)} className='s-xq'>详情</span>,
             },
         ];
         return (
